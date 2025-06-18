@@ -5,23 +5,26 @@ function Projects() {
     {
       title: "Portfolio Website",
       tech: "React, Tailwind CSS",
-      image: "https://via.placeholder.com/400x250",
-      github: "#",
-      live: "#",
+      image: "/portfolio.png", // make sure this image is in the /public folder
+      github: "https://github.com/ahsan123/portfolio-website",
+      live: "https://ahsan-portfolio.vercel.app",
+      underDevelopment: false,
     },
     {
       title: "E-commerce Store",
       tech: "React, Node.js, MongoDB",
-      image: "https://via.placeholder.com/400x250",
-      github: "#",
-      live: "#",
+      image: "/ecommerce.png", // add to /public
+      github: "",
+      live: "",
+      underDevelopment: true,
     },
     {
       title: "Blog Platform",
       tech: "Next.js, Tailwind CSS",
-      image: "https://via.placeholder.com/400x250",
-      github: "#",
-      live: "#",
+      image: "/blog.png", // add to /public
+      github: "",
+      live: "",
+      underDevelopment: true,
     },
   ];
 
@@ -47,7 +50,10 @@ function Projects() {
             <motion.div
               key={index}
               className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59,130,246,0.3)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(59,130,246,0.3)",
+              }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.5 }}
@@ -64,24 +70,31 @@ function Projects() {
                 <p className="text-sm text-gray-400 mb-4 italic">
                   {project.tech}
                 </p>
-                <div className="flex justify-between items-center text-sm font-medium">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:underline hover:text-blue-300 transition"
-                  >
-                    GitHub →
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-400 hover:underline hover:text-green-300 transition"
-                  >
-                    Live Demo →
-                  </a>
-                </div>
+
+                {project.underDevelopment ? (
+                  <p className="text-yellow-400 font-semibold italic">
+                    🚧 Under Development
+                  </p>
+                ) : (
+                  <div className="flex justify-between items-center text-sm font-medium">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:underline hover:text-blue-300 transition"
+                    >
+                      GitHub →
+                    </a>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-green-400 hover:underline hover:text-green-300 transition"
+                    >
+                      Live Demo →
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
