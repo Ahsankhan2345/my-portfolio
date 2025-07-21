@@ -3,17 +3,25 @@ import { motion } from "framer-motion";
 function Projects() {
   const dummyProjects = [
     {
-      title: "Portfolio Website",
-      tech: "React, Tailwind CSS",
-      image: "/portfolio.png", // make sure this image is in the /public folder
-      github: "https://github.com/ahsan123/portfolio-website",
-      live: "https://ahsan-portfolio.vercel.app",
+      title: "Dr. Zohaib Buzdar Website",
+      tech: "React, Tailwind CSS, Framer Motion",
+      image: "/dr-zohaib.jpg", // make sure this image is in the /public folder
+      github: "https://github.com/Ahsankhan2345/dr-zohaib-portfolio",
+      live: "https://dr-zohaib-portfolio.vercel.app/",
+      underDevelopment: false,
+    },
+    {
+      title: "My Portfolio Website",
+      tech: "React, Tailwind CSS, Framer Motion",
+      image: "/portfolio.png", // add this image in /public
+      github: "https://github.com/Ahsankhan2345/my-portfolio",
+      live: "https://my-portfolio-lac-nine-28.vercel.app/",
       underDevelopment: false,
     },
     {
       title: "E-commerce Store",
       tech: "React, Node.js, MongoDB",
-      image: "/ecommerce.png", // add to /public
+      image: "/ecommerce.png", // add this image in /public
       github: "",
       live: "",
       underDevelopment: true,
@@ -21,7 +29,7 @@ function Projects() {
     {
       title: "Blog Platform",
       tech: "Next.js, Tailwind CSS",
-      image: "/blog.png", // add to /public
+      image: "/blog.png", // add this image in /public
       github: "",
       live: "",
       underDevelopment: true,
