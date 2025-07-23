@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-portfolio-lac-nine-28.vercel.app/sitemap.xml
