@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ElectricBorder from "./ElectricBorder";
-import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
 
