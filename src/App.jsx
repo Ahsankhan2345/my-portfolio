@@ -31,7 +31,7 @@ function App() {
             playsInline 
             className="absolute top-0 left-0 w-full h-full object-cover -z-10"
           >
-            <source src="/bg-about1.mp4" type="video/mp4" />
+            <source src="/videos/bg-about1.mp4" type="video/mp4" />
           </video>
 
           {/* Overlay (optional for better text visibility) */}

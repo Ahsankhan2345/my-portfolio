@@ -26,7 +26,7 @@ Message: ${form.message}`;
 
       {/* ---------------- BACKGROUND VIDEO ---------------- */}
       <video
-        src="/bg-about1.mp4"
+        src="/videos/bg-about1.mp4"
         autoPlay
         loop
         muted

@@ -33,7 +33,7 @@ export default function About() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-20"
         >
-          <source src="/bg-about1.mp4" type="video/mp4" />
+          <source src="/videos/bg-about1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black/40 z-30"></div> {/* Increased z-index for overlay */}
