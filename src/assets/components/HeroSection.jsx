@@ -1,35 +1,17 @@
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet"; 
+import { Helmet } from "react-helmet";
 import ElectricBorder from "./ElectricBorder";
-import { useNavigate } from "react-router-dom";   // ✅ FIX – Added import
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
 
-  const navigate = useNavigate();  // ✅ FIX – useNavigate hook
-
+  // Deploy safe navigation (no 404 error)
   const goToProjects = () => {
-    navigate("/projects");  // ✅ FIX – works on deploy also
+    window.location.pathname = "/projects"; // ⬅ 404 fix
   };
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden text-white px-6 lg:px-20 pt-0 pb-20"> 
-    
-      {/* Helmet Meta Tags */}
-      <Helmet>
-        <title>Ahsan Khan Developer Portfolio</title>
-        <meta name="description" content="Ahsan Khan is a front-end developer specializing in React, Tailwind CSS, and Firebase. Explore my portfolio of web applications and UI/UX designs." />
-        <meta name="keywords" content="Ahsan Khan, Portfolio, Front-End Developer, Web Developer, React Developer, Tailwind CSS, UI/UX Design" />
-        <meta name="author" content="Ahsan Khan" />
-        <meta property="og:title" content="Ahsan Khan Developer Portfolio" />
-        <meta property="og:description" content="Explore my portfolio of web applications, UI/UX designs, and modern front-end development skills." />
-        <meta property="og:image" content="/ahsan-profile.png" />
-        <meta property="og:url" content="https://yourwebsite.com" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:title" content="Ahsan Khan - Front-End Developer Portfolio" />
-        <meta name="twitter:description" content="Explore my portfolio of web applications, UI/UX designs, and modern front-end development skills." />
-        <meta name="twitter:image" content="/ahsan-profile.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+    <div className="relative min-h-screen w-full overflow-hidden text-white px-6 lg:px-20 pt-0 pb-20">
 
       {/* Background Video */}
       <video
@@ -37,21 +19,20 @@ export default function HeroSection() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-20"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-30"></div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10"></div>
 
-      {/* Floating shapes */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-purple-600/30 blur-3xl rounded-full animate-pulse z-40"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-600/30 blur-3xl rounded-full animate-pulse z-40"></div>
+      {/* Floating Lights */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500/30 blur-3xl rounded-full animate-pulse z-20"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-600/30 blur-3xl rounded-full animate-pulse z-20"></div>
 
-      {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16 relative z-50">
+      {/* CONTENT */}
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center gap-16 z-30">
 
         {/* LEFT TEXT */}
         <motion.div
@@ -63,7 +44,7 @@ export default function HeroSection() {
           <span className="text-lg tracking-wider">PORTFOLIO.</span>
 
           <h1 className="text-4xl lg:text-6xl font-bold leading-tight mt-4">
-            I Build Modern  
+            I Build Modern
             <span className="text-purple-400"> Web Applications </span>
             For Your Business
           </h1>
@@ -115,7 +96,7 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 relative z-50">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 relative z-30">
 
         {/* AI Card */}
         <motion.div
