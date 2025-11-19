@@ -253,7 +253,7 @@ function Projects() {
 
                     {/* Updated Developer Description */}
                     <p className="text-gray-400 text-center italic max-w-3xl mx-auto text-lg mb-10">
-                        As a dedicated developer, I focus on building high-performance web applications using modern frameworks and integrating next-generation **AI/ML capabilities** to solve complex, real-world problems. Explore my featured work below.
+                        As a dedicated developer, I focus on building high-performance web applications using modern frameworks and integrating next-generation "AI/ML capabilities" to solve complex, real-world problems. Explore my featured work below.
                     </p>
 
                     {/* Projects Grid/List */}

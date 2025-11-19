@@ -1,40 +1,37 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet"; 
 import ElectricBorder from "./ElectricBorder";
-
+import { useNavigate } from "react-router-dom";   // ✅ FIX – Added import
 
 export default function HeroSection() {
 
+  const navigate = useNavigate();  // ✅ FIX – useNavigate hook
+
   const goToProjects = () => {
-    window.location.href = "/projects"; 
+    navigate("/projects");  // ✅ FIX – works on deploy also
   };
 
   return (
-    // CHANGE: py-20 changed to pt-0 pb-20 
     <div className="min-h-screen w-full relative overflow-hidden text-white px-6 lg:px-20 pt-0 pb-20"> 
-  
+    
       {/* Helmet Meta Tags */}
       <Helmet>
         <title>Ahsan Khan Developer Portfolio</title>
         <meta name="description" content="Ahsan Khan is a front-end developer specializing in React, Tailwind CSS, and Firebase. Explore my portfolio of web applications and UI/UX designs." />
         <meta name="keywords" content="Ahsan Khan, Portfolio, Front-End Developer, Web Developer, React Developer, Tailwind CSS, UI/UX Design" />
         <meta name="author" content="Ahsan Khan" />
-        
-        {/* Open Graph for social media */}
         <meta property="og:title" content="Ahsan Khan Developer Portfolio" />
         <meta property="og:description" content="Explore my portfolio of web applications, UI/UX designs, and modern front-end development skills." />
         <meta property="og:image" content="/ahsan-profile.png" />
         <meta property="og:url" content="https://yourwebsite.com" />
         <meta property="og:type" content="website" />
-
-        {/* Twitter Card */}
         <meta name="twitter:title" content="Ahsan Khan - Front-End Developer Portfolio" />
         <meta name="twitter:description" content="Explore my portfolio of web applications, UI/UX designs, and modern front-end development skills." />
         <meta name="twitter:image" content="/ahsan-profile.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      {/* Background Video (z-20 is good for background) */}
+      {/* Background Video */}
       <video
         autoPlay
         loop
@@ -46,23 +43,22 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      {/* Blurry Overlay (z-10 is fine) */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-30"></div> 
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-30"></div>
 
       {/* Floating shapes */}
       <div className="absolute top-10 left-10 w-32 h-32 bg-purple-600/30 blur-3xl rounded-full animate-pulse z-40"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-600/30 blur-3xl rounded-full animate-pulse z-40"></div>
 
-      {/* Content Grid (z-50 will ensure it is above background) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16 relative z-50"> 
+      {/* Main Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16 relative z-50">
 
         {/* LEFT TEXT */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          // ADDED: Margin Top to push content below the Navbar (You might need to tweak 100px)
-          className="mt-[100px] md:mt-[120px]" 
+          className="mt-[100px] md:mt-[120px]"
         >
           <span className="text-lg tracking-wider">PORTFOLIO.</span>
 
@@ -77,7 +73,7 @@ export default function HeroSection() {
             responsive & modern websites using React, Tailwind CSS & Firebase.
           </p>
 
-          {/* Advanced Explore My Work */}
+          {/* BUTTON */}
           <div className="mt-10">
             <motion.button
               onClick={goToProjects}
@@ -118,10 +114,10 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom 2 Electric Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 relative z-50"> 
+      {/* Bottom Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 relative z-50">
 
-        {/* AI Solutions Card */}
+        {/* AI Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,7 +137,7 @@ export default function HeroSection() {
           </ElectricBorder>
         </motion.div>
 
-        {/* Web Development Card */}
+        {/* Web Dev Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
