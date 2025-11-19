@@ -1,185 +1,170 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
-import emailjs from "emailjs-com";
-import toast from "react-hot-toast";
+import { FaWhatsapp, FaCheckCircle, FaEnvelope, FaLinkedin, FaInstagram } from "react-icons/fa";
 
-function Contact() {
-  const [formData, setFormData] = useState({
+export default function Contact() {
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    emailjs
-      .send(
-        "service_5ci8kei",
-        "template_5wqieux",
-        formData,
-        "aKGcGIhdKbaHthGS_"
-      )
-      .then(() => {
-        toast.success(" Message sent successfully!", {
-          duration: 4000,
-          style: {
-            background: "#1f2937",
-            color: "#fff",
-            borderRadius: "8px",
-          },
-        });
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch(() => {
-        toast.error(" Failed to send message. Try again later.", {
-          duration: 4000,
-          style: {
-            background: "#7f1d1d",
-            color: "#fff",
-            borderRadius: "8px",
-          },
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    const msg = `Name: ${form.name}
+Email: ${form.email}
+Message: ${form.message}`;
+    const url = `https://wa.me/923001234567?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
   };
 
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center px-4 py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="w-full max-w-5xl text-center"
-      >
-        <h2 className="text-4xl font-bold mb-4">Contact Me</h2>
-        <p className="text-gray-400 mb-10">
-          Have a project or want to connect? Let’s talk!
-        </p>
+    <div className="relative w-full min-h-screen flex items-center justify-center">
 
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="bg-gray-900 rounded-2xl p-8 shadow-xl space-y-6 text-left"
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            rows="4"
-            placeholder="Your Message"
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full ${
-              isSubmitting
-                ? "bg-gray-600 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            } text-white py-3 rounded-xl font-semibold transition`}
-          >
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
-        </motion.form>
+      {/* ---------------- BACKGROUND VIDEO ---------------- */}
+      <video
+        src="/bg-about1.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      ></video>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full text-left"
-        >
-          {[
-            {
-              icon: (
-                <MdPhone className="text-3xl text-green-400 group-hover:scale-110 transition-transform" />
-              ),
-              label: "Phone",
-              value: "0344-0217023",
-              href: "tel:03440217023",
-            },
-            {
-              icon: (
-                <MdEmail className="text-3xl text-blue-400 group-hover:scale-110 transition-transform" />
-              ),
-              label: "Email",
-              value: "ahsankhan523123@gmail.com",
-              href: "mailto:ahsankhan523123@gmail.com",
-            },
-            {
-              icon: (
-                <MdLocationOn className="text-3xl text-yellow-400 group-hover:scale-110 transition-transform" />
-              ),
-              label: "Location",
-              value: "Ali Town, Lahore",
-              href: "https://www.google.com/maps/place/Ali+Town,+Lahore",
-            },
-            {
-              icon: (
-                <FaLinkedin className="text-3xl text-blue-500 group-hover:scale-110 transition-transform" />
-              ),
-              label: "LinkedIn",
-              value: "linkedin.com/in/ahsan-khan-04a8a0279",
-              href: "https://www.linkedin.com/in/ahsan-khan-04a8a0279",
-            },
-            {
-              icon: (
-                <FaWhatsapp className="text-3xl text-green-400 group-hover:scale-110 transition-transform" />
-              ),
-              label: "WhatsApp",
-              value: "Chat on WhatsApp",
-              href: "https://wa.me/923440217023",
-            },
-          ].map((item, idx) => (
-            <a
-              key={idx}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-start gap-4 bg-gray-800 hover:bg-gray-700 transition p-4 rounded-xl border border-gray-700 hover:shadow-md"
-            >
-              {item.icon}
+      {/* ---------------- DARK + BLUR OVERLAY ---------------- */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+      {/* ---------------- MAIN CONTENT ---------------- */}
+      <div className="relative w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6">
+        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+
+          {/* ---------------- LEFT SECTION ---------------- */}
+          <div className="flex flex-col justify-center text-white space-y-6">
+
+            {/* Profile Card */}
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 flex items-center gap-4 shadow-xl">
+              <img
+                src="/ahsan-profile1.png"
+                alt="Profile"
+                className="w-16 h-16 rounded-full object-cover border-2 border-white/40"
+              />
               <div>
-                <p className="text-sm text-gray-400">{item.label}</p>
-                <p className="font-medium text-white">{item.value}</p>
+                <h3 className="text-xl font-semibold">Ahsan Khan</h3>
+                <p className="text-white/70 text-sm md:text-base">Professional Web Developer</p>
               </div>
-            </a>
-          ))}
-        </motion.div>
-      </motion.div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-3xl sm:text-4xl font-bold leading-snug">
+              Get in Touch <br />
+              Let’s Build Something <br />
+              Amazing Together
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-white/70 text-base md:text-lg max-w-md">
+              Whether you need a new website, want to improve your existing one,
+              or need a reliable developer — I’m here to help.
+              <br />
+              <span className="font-semibold text-white">I respond within 24 hours.</span>
+            </p>
+
+            {/* Bullet Points */}
+            <div className="space-y-2 md:space-y-3">
+              <div className="flex items-center gap-2 text-base md:text-lg">
+                <FaCheckCircle className="text-green-400" /> Modern & Responsive Websites
+              </div>
+              <div className="flex items-center gap-2 text-base md:text-lg">
+                <FaCheckCircle className="text-green-400" /> Complete Frontend / Backend Solutions
+              </div>
+              <div className="flex items-center gap-2 text-base md:text-lg">
+                <FaCheckCircle className="text-green-400" /> Website Fixing & Performance Optimization
+              </div>
+            </div>
+
+            {/* Social Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+              <button className="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
+                <FaInstagram size={20} /> Connect on Instagram
+              </button>
+
+              <button className="w-full sm:w-auto bg-gradient-to-r from-[#2ad05f] to-[#0ca73f] text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
+                <FaWhatsapp size={20} /> Chat on WhatsApp
+              </button>
+            </div>
+
+            <div className="mt-4 w-full sm:w-auto">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
+                <FaLinkedin size={20} /> Connect on LinkedIn
+              </button>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-3 mt-6 text-white/90">
+            Prefer Email?
+              <FaEnvelope size={22} className="text-yellow-300" />
+              <span className="text-base md:text-lg">ahsankhan523123@gmail.com</span>
+            </div>
+          </div>
+
+          {/* ---------------- RIGHT FORM ---------------- */}
+          <div className="bg-white p-6 md:p-10 rounded-2xl shadow-2xl w-full">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
+              Send Me a Message
+            </h2>
+
+            <p className="text-center text-gray-600 mb-6 text-sm md:text-base">
+              Fill out the form and I’ll get back to you within 24 hours.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your professional email"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Write your requirements and goals about your business and project..."
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                value={form.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+
+              <button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-transform transform hover:scale-105"
+              >
+                Send via WhatsApp <FaWhatsapp size={20} />
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   );
 }
-
-export default Contact;

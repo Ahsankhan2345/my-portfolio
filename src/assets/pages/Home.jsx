@@ -1,11 +1,11 @@
-import Hero from "../components/Hero"; // 👈 Hero import
+import HeroSection from "../components/HeroSection";
 
-function Home() {
+
+export default function Home() {
   return (
-    <div>
-      <Hero />
+    <div className="bg-black text-white min-h-screen">
+      {/* Hero Section */}
+      <HeroSection />
     </div>
   );
 }
-
-export default Home;

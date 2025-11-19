@@ -1,69 +1,62 @@
-import { FaPhoneAlt, FaMapMarkerAlt, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaTwitter, FaXing, FaLinkedinIn, FaInstagram, FaFacebook } from "react-icons/fa";
 
-function Footer() {
-  return (
-    <footer className="bg-black text-white px-6 py-10">
-      <div className="max-w-4xl mx-auto text-center space-y-6">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold"
-        >
-          Contact Info
-        </motion.h2>
+export default function SimpleFooter() {
+    const currentYear = new Date().getFullYear();
+    const yourName = "Ahsan Khan";
 
-        {/* Contact Details */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 text-lg"
-        >
-          <a href="tel:03440217023" className="flex items-center gap-2 hover:text-blue-400 transition">
-            <FaPhoneAlt /> 0344-0217023
-          </a>
-          <a
-            href="https://maps.google.com/?q=Ali+Town,+Lahore"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-blue-400 transition"
-          >
-            <FaMapMarkerAlt /> Ali Town, Lahore
-          </a>
-          <a
-            href="https://wa.me/923440217023"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-green-400 transition"
-          >
-            <FaWhatsapp /> WhatsApp
-          </a>
-        </motion.div>
+    const socialIcons = [
+        { icon: FaXing, href: "https://x.com/Ahsankhan5232", label: "X (Twitter)" },
+        { icon: FaFacebook, href: "https://www.facebook.com/ahsan.khan.857681", label: "Facebook" },
+        { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/ahsan-khan-04a8a0279/", label: "LinkedIn" },
+        { icon: FaInstagram, href: "https://www.instagram.com/ahsankhan___23/", label: "Instagram" },
+    ];
 
-        {/* Social Media Icons */}
-        <div className="flex justify-center gap-6 text-2xl mt-4">
-          <a href="https://www.facebook.com/ahsan.khan.857681" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-            <FaFacebook />
-          </a>
-          <a href="https://www.instagram.com/ahsankhan___23/?hl=en" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400">
-            <FaInstagram />
-          </a>
-          <a href="https://www.linkedin.com/in/ahsan-khan-04a8a0279/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
-            <FaLinkedin />
-          </a>
-          <a href="https://x.com/Ahsankhan5232" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-            <FaTwitter />
-          </a>
-        </div>
+    return (
+        <footer className="
+            bg-transparent 
+            backdrop-blur-md 
+            text-gray-400 
+            py-6 
+            border-t border-white/20
+        ">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Footer Bottom Text */}
-        <p className="text-sm text-gray-500 mt-6">© {new Date().getFullYear()} Ahsan Khan. All rights reserved.</p>
-      </div>
-    </footer>
-  );
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+
+                    {/* Left Section: Logo/Name */}
+                    <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 flex items-center justify-center bg-purple-600 rounded-full text-white font-bold text-lg">
+                            AK
+                        </div>
+
+                        <span className="text-white text-lg font-semibold">
+                            Ahsan Khan
+                        </span>
+                    </div>
+
+                    {/* Middle Section */}
+                    <p className="text-sm text-gray-300 order-last sm:order-none">
+                        Copyright {currentYear} &copy; {yourName}
+                    </p>
+
+                    {/* Right Section: Social Icons */}
+                    <div className="flex space-x-4">
+                        {socialIcons.map((item, index) => (
+                            <a
+                                key={index}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-white transition-colors duration-200 text-xl"
+                                aria-label={item.label}
+                            >
+                                <item.icon />
+                            </a>
+                        ))}
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    );
 }
-
-export default Footer;

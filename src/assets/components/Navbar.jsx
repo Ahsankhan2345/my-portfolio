@@ -1,88 +1,100 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
-function Navbar() {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
-  // ✅ Detect screen size to switch between NavLink and <a>
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-
-  const paths = ["/", "/about", "/projects", "/contact"];
-  const ids = ["home", "about", "projects", "contact"];
-  const labels = ["Home", "About", "Projects", "Contact"];
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+  ];
 
   return (
-    <nav className="bg-black text-white shadow-md fixed top-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold text-white hover:text-blue-400 transition duration-300"
-          onClick={closeMenu}
-        >
-          Ahsan Khan
-        </Link>
+    <div className="relative w-full z-50">
 
-        {/* Desktop Links */}
-        <div className="space-x-6 hidden md:flex">
-          {paths.map((path, index) => (
-            <NavLink
-              key={path}
-              to={path}
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                `transition duration-300 ${
-                  isActive ? "text-blue-400" : "hover:text-blue-400"
-                }`
-              }
+      {/* Transparent Navbar */}
+      <nav
+        className={`w-full max-w-6xl mx-auto transition-all duration-300
+          sticky top-0
+          bg-transparent
+          rounded-full px-8 py-3 border border-white/20
+        `}
+      >
+        <div className="flex items-center justify-between">
+          {/* LOGO */}
+          <Link to="/" className="text-xl font-semibold text-white tracking-wide">
+            Ahsan Khan.
+          </Link>
+
+          {/* DESKTOP MENU */}
+          <div className="hidden md:flex items-center space-x-10">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                className={({ isActive }) =>
+                  `relative group text-sm font-semibold transition-all
+                  ${
+                    isActive
+                      ? "text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500"
+                      : "text-gray-200 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-blue-500"
+                  }`
+                }
+              >
+                {link.name}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 transition-all duration-300 group-hover:w-full"></span>
+              </NavLink>
+            ))}
+
+            {/* LET’S CHAT */}
+            <Link
+              to="/contact"
+              className="bg-white text-black font-semibold px-6 py-2 rounded-full shadow hover:bg-gray-200 transition"
             >
-              {labels[index]}
-            </NavLink>
-          ))}
-        </div>
+              Let’s chat
+            </Link>
+          </div>
 
-        {/* Hamburger (Mobile only) */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu}>
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {/* MOBILE MENU TOGGLE */}
+          <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-black px-6 pb-4">
-          {ids.map((id, index) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={closeMenu}
-              className="block py-2 transition duration-300 hover:text-blue-400"
+        {/* MOBILE MENU */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              className="md:hidden pt-4 bg-transparent rounded-xl p-6 space-y-4 border border-white/20"
             >
-              {labels[index]}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-white text-lg font-medium hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-blue-500 transition"
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              <Link
+                to="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="block text-center bg-white text-black font-semibold px-6 py-2 rounded-full"
+              >
+                Let’s chat
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </div>
   );
 }
-
-export default Navbar;

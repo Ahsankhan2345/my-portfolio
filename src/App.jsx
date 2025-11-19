@@ -1,47 +1,60 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
-import Navbar from "./assets/components/Navbar";
-import Footer from "./assets/components/Footer";
-import Home from "./assets/pages/Home";
-import About from "./assets/pages/About";
-import Projects from "./assets/pages/Projects";
-import Contact from "./assets/pages/Contact";
+import Navbar from "./assets/components/Navbar.jsx";
+import Footer from "./assets/components/Footer.jsx";
+import Home from "./assets/pages/Home.jsx";
+import About from "./assets/pages/About.jsx";
+import Projects from "./assets/pages/Projects.jsx";
+import Contact from "./assets/pages/Contact.jsx";
 
 function App() {
-  const [isMobile, setIsMobile] = useState(false);
-
+  
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    handleResize(); // run on mount
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const handleRouteChange = () => window.scrollTo(0, 0);
+    window.addEventListener("popstate", handleRouteChange);
+    return () => window.removeEventListener("popstate", handleRouteChange);
   }, []);
 
   return (
-    <Router>
-      <div className="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 min-h-screen">
-        <Navbar />
-        {isMobile ? (
-          <>
-            <section id="home"><Home /></section>
-            <section id="about"><About /></section>
-            <section id="projects"><Projects /></section>
-            <section id="contact"><Contact /></section>
-          </>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        )}
-        <Footer />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        {/* 🔥 Global Background — YE HAR PAGE PAR DIKHE GA */}
+        <div className="relative min-h-screen overflow-hidden">
+
+          {/* 🔥 Background Video or Image */}
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          >
+            <source src="/bg-about1.mp4" type="video/mp4" />
+          </video>
+
+          {/* Overlay (optional for better text visibility) */}
+          <div className="absolute inset-0 bg-black/40 -z-10"></div>
+
+          {/* 🔥 Transparent Navbar */}
+          <Navbar />
+
+          {/* Page Content */}
+          <div className="text-white">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </div>
+
+          {/* 🔥 Transparent Footer */}
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 
