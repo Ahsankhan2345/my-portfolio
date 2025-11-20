@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { FaReact, FaNodeJs, FaDatabase, FaPaintBrush } from "react-icons/fa";
-
+import {
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+  FaPaintBrush,
+  FaCss3Alt,
+  FaCode,
+  FaBrain,
+} from "react-icons/fa";
 
 export default function About() {
   return (
@@ -12,7 +19,10 @@ export default function About() {
           name="description"
           content="Ahsan Khan — MERN Stack Developer. I build scalable React + Node.js apps with clean architecture, responsive UI and performance-first approach."
         />
-        <meta property="og:title" content="Ahsan Khan — MERN Stack Developer" />
+        <meta
+          property="og:title"
+          content="Ahsan Khan — MERN Stack Developer"
+        />
         <meta
           property="og:description"
           content="MERN Stack developer specializing in React, Node.js, Express and MongoDB. Portfolio of modern, responsive web apps."
@@ -20,12 +30,9 @@ export default function About() {
         <meta property="og:image" content="/about-profile.png" />
       </Helmet>
 
-      {/* Main Section */}
+      {/* MAIN SECTION */}
       <section className="relative pt-0 min-h-screen w-full overflow-hidden font-[Poppins,sans-serif]">
-        
-        {/* --- 2. Navbar ko yahan render kiya --- */}
-
-        {/* Video Background + Overlay + Gradient */}
+        {/* BG VIDEO */}
         <video
           autoPlay
           loop
@@ -34,18 +41,14 @@ export default function About() {
           className="absolute inset-0 w-full h-full object-cover z-20"
         >
           <source src="/videos/bg-about1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/40 z-30"></div> {/* Increased z-index for overlay */}
+
+        <div className="absolute inset-0 bg-black/40 z-30"></div>
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-black via-[#0b0b12] to-[#0b0820] animate-gradientBackground"></div>
 
-        {/* Inner Content - pt-32 ko pt-20 kiya gaya hai kyunki Navbar ab content flow mein hai */}
         <section className="relative w-full min-h-screen text-white px-6 md:px-16 pt-20 pb-20 overflow-hidden z-40">
-          
-          {/* Grid: Left Orbit + Right About */}
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-20">
-
-            {/* Left: Orbit + Stats */}
+            {/* LEFT SIDE — ORBIT */}
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -56,27 +59,46 @@ export default function About() {
               <div className="relative w-full flex items-center justify-center py-10">
                 <div className="relative w-64 h-64 md:w-[420px] md:h-[420px] flex items-center justify-center">
 
-                  {/* Orbit Lines */}
-                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] rounded-full border border-white/30 animate-spin-slow"></div>
-                  <div className="absolute w-[230px] h-[230px] md:w-[300px] md:h-[300px] rounded-full border border-white/20 animate-spin-reverse"></div>
+                  {/* OUTER ORBIT CLOCKWISE */}
+                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] 
+                    rounded-full border border-white/30 rotate-clockwise">
+                  </div>
 
-                  {/* Orbit Icons */}
-                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] animate-spin-fast">
-                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-blue-400">
-                      <FaReact size={20} />
+                  {/* INNER ORBIT ANTI-CLOCKWISE */}
+                  <div className="absolute w-[230px] h-[230px] md:w-[300px] md:h-[300px] 
+                    rounded-full border border-white/20 rotate-anticlockwise">
+                  </div>
+
+                  {/* ICONS CONTAINER — FAST CLOCKWISE */}
+                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] rotate-clockwise-fast">
+
+                    {/* REACT */}
+                    <div className="orbit-icon rotate-anticlockwise">
+                      <FaReact size={20} className="text-blue-400" />
                     </div>
-                    <div className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-green-500">
-                      <FaNodeJs size={20} />
+
+                    {/* NODE */}
+                    <div className="orbit-icon2 rotate-clockwise">
+                      <FaNodeJs size={20} className="text-green-500" />
                     </div>
-                    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-green-700">
-                      <FaDatabase size={20} />
+
+                    {/* MONGO */}
+                    <div className="orbit-icon3 rotate-anticlockwise">
+                      <FaDatabase size={20} className="text-green-700" />
                     </div>
-                    <div className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-pink-500">
-                      <FaPaintBrush size={20} />
+
+                    {/* UI/UX */}
+                    <div className="orbit-icon4 rotate-clockwise">
+                      <FaPaintBrush size={20} className="text-pink-500" />
+                    </div>
+
+                    {/* BRAIN */}
+                    <div className="orbit-icon5 rotate-anticlockwise">
+                      <FaBrain size={20} className="text-red-400" />
                     </div>
                   </div>
 
-                  {/* Center Image */}
+                  {/* CENTER IMAGE */}
                   <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden bg-white/10 backdrop-blur-xl shadow-xl z-20">
                     <img
                       src="/about-profile.png"
@@ -87,7 +109,7 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Stats */}
+              {/* STATS */}
               <div className="w-full grid grid-cols-3 gap-4 md:gap-6">
                 <div className="text-center">
                   <p className="text-2xl md:text-3xl font-extrabold">+2</p>
@@ -104,7 +126,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right: About Content */}
+            {/* RIGHT SIDE CONTENT */}
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -113,19 +135,24 @@ export default function About() {
               className="space-y-6"
             >
               <h2 className="text-3xl md:text-4xl font-extrabold">
-                About <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">Me</span>
+                About{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+                  Me
+                </span>
               </h2>
 
               <p className="text-gray-300 max-w-xl leading-relaxed">
-                Hi, I’m <strong>Ahsan Khan</strong> — a MERN Stack developer focused on building scalable,
-                production-ready web applications. I build intuitive user interfaces with React and Tailwind,
-                design clean backend APIs with Node.js & Express, and store data reliably with MongoDB.
+                Hi, I’m <strong>Ahsan Khan</strong> — a MERN Stack developer
+                focused on building scalable, production-ready web applications.
+                I build intuitive user interfaces with React and Tailwind,
+                design clean backend APIs with Node.js & Express, and store data
+                reliably with MongoDB.
               </p>
 
               <p className="text-gray-300 max-w-xl leading-relaxed">
-                I treat every project like a product: planning architecture, writing modular code, and keeping performance
-                and accessibility in mind. I prefer small, maintainable team-friendly codebases and ship features quickly
-                using best practices (ESLint, testing, CI/CD).
+                I treat every project like a product: planning architecture,
+                writing modular code, and keeping performance and accessibility
+                in mind.
               </p>
 
               <div className="flex flex-wrap gap-4 items-center">
@@ -133,35 +160,56 @@ export default function About() {
                   href="/Ahsan-CV.pdf"
                   download
                   className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg text-white font-semibold shadow-md hover:scale-105 transition"
-                  aria-label="Download CV"
                 >
                   Download CV
                 </a>
+
                 <a
                   href="/contact"
                   className="inline-flex items-center gap-2 px-5 py-3 border border-gray-700 rounded-lg text-gray-200 hover:bg-gray-800 transition"
-                  aria-label="Contact Ahsan"
                 >
                   Hire Me
                 </a>
               </div>
 
-              {/* Skills Grid */}
+              {/* SKILLS */}
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {[
-                  { icon: <FaReact size={20} />, label: "React.js" },
-                  { icon: <FaNodeJs size={20} />, label: "Node.js" },
-                  { icon: <FaDatabase size={20} />, label: "MongoDB" },
-                  { icon: <FaPaintBrush size={20} />, label: "UI/UX" },
-                  { icon: <FaReact size={20} />, label: "Tailwind CSS" },
-                  { icon: <FaNodeJs size={20} />, label: "REST APIs" },
+                  {
+                    icon: <FaReact size={20} className="text-blue-400" />,
+                    label: "React.js",
+                  },
+                  {
+                    icon: <FaNodeJs size={20} className="text-green-500" />,
+                    label: "Node.js",
+                  },
+                  {
+                    icon: <FaDatabase size={20} className="text-green-700" />,
+                    label: "MongoDB",
+                  },
+                  {
+                    icon: <FaCss3Alt size={20} className="text-blue-500" />,
+                    label: "Tailwind CSS",
+                  },
+                  {
+                    icon: <FaCode size={20} className="text-yellow-400" />,
+                    label: "REST APIs",
+                  },
+                  {
+                    icon: <FaBrain size={20} className="text-red-400" />,
+                    label: "AI/ML Integration",
+                  },
+                  {
+                    icon: <FaPaintBrush size={20} className="text-pink-500" />,
+                    label: "UI/UX",
+                  },
                 ].map((s, i) => (
                   <motion.div
                     key={i}
                     whileHover={{ y: -4 }}
                     className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/6"
                   >
-                    <div className="text-purple-400">{s.icon}</div>
+                    <div>{s.icon}</div>
                     <div>
                       <p className="text-sm font-semibold">{s.label}</p>
                       <p className="text-xs text-gray-400">Intermediate</p>
@@ -172,7 +220,7 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Experience Timeline */}
+          {/* EXPERIENCE TIMELINE — SAME AS YOUR ORIGINAL */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -206,16 +254,18 @@ export default function About() {
                 },
               ].map((job, idx) => (
                 <div key={idx} className="relative group">
-                  <div className="absolute -left-32 top-0 w-28 text-right text-sm font-medium text-gray-400">
+                  <div className="absolute -left-28 top-0 w-28 text-right text-sm font-medium text-gray-400">
                     {job.year}
                   </div>
+
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className={`absolute left-0 w-5 h-5 rounded-full mt-1 bg-gradient-to-tr ${job.color} shadow-lg transition-transform duration-300 group-hover:scale-125`}
+                    className={`absolute -left-[14px] w-5 h-5 rounded-full mt-1 bg-gradient-to-tr ${job.color} shadow-lg transition-transform duration-300 group-hover:scale-125`}
                   ></motion.div>
+
                   <div className="pl-10">
                     <h4 className="text-lg md:text-xl font-semibold text-white group-hover:text-gray-300 transition-colors duration-300">
                       {job.title}
@@ -226,11 +276,10 @@ export default function About() {
               ))}
             </div>
           </motion.div>
-
         </section>
       </section>
 
-      {/* Tailwind Animations */}
+      {/* ANIMATIONS */}
       <style>
         {`
           @keyframes gradientBackground {
@@ -241,9 +290,44 @@ export default function About() {
             background-size: 400% 400%;
             animation: gradientBackground 15s ease infinite;
           }
-          .animate-spin-slow { animation: spin 18s linear infinite; }
-          .animate-spin-fast { animation: spin 12s linear infinite; }
-          .animate-spin-reverse { animation: spin 22s linear infinite reverse; }
+
+          /* ROTATIONS */
+          @keyframes spinClockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes spinAntiClockwise {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+          }
+
+          .rotate-clockwise {
+            animation: spinClockwise 25s linear infinite;
+          }
+          .rotate-anticlockwise {
+            animation: spinAntiClockwise 30s linear infinite;
+          }
+          .rotate-clockwise-fast {
+            animation: spinClockwise 12s linear infinite;
+          }
+
+          /* ICON POSITIONS */
+          .orbit-icon, .orbit-icon2, .orbit-icon3, .orbit-icon4, .orbit-icon5 {
+            width: 40px; 
+            height: 40px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            position: absolute;
+          }
+          .orbit-icon { top: -20px; left: 50%; transform: translateX(-50%); }
+          .orbit-icon2 { right: -20px; top: 50%; transform: translateY(-50%); }
+          .orbit-icon3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+          .orbit-icon4 { left: -20px; top: 50%; transform: translateY(-50%); }
+          .orbit-icon5 { top: 10%; right: 10%; }
         `}
       </style>
     </>

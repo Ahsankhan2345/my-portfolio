@@ -24,7 +24,7 @@ Message: ${form.message}`;
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center">
 
-      {/* ---------------- BACKGROUND VIDEO ---------------- */}
+      {/* Background Video */}
       <video
         src="/videos/bg-about1.mp4"
         autoPlay
@@ -34,14 +34,14 @@ Message: ${form.message}`;
         className="absolute inset-0 w-full h-full object-cover"
       ></video>
 
-      {/* ---------------- DARK + BLUR OVERLAY ---------------- */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
 
-      {/* ---------------- MAIN CONTENT ---------------- */}
+      {/* MAIN CONTENT */}
       <div className="relative w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6">
         <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
-          {/* ---------------- LEFT SECTION ---------------- */}
+          {/* LEFT SIDE */}
           <div className="flex flex-col justify-center text-white space-y-6">
 
             {/* Profile Card */}
@@ -111,7 +111,6 @@ Message: ${form.message}`;
               >
                 <FaWhatsapp size={20} /> Chat on WhatsApp
               </a>
-
             </div>
 
             {/* LinkedIn */}
@@ -128,15 +127,17 @@ Message: ${form.message}`;
               </a>
             </div>
 
-            {/* Email */}
-            <div className="flex items-center gap-3 mt-6 text-white/90">
-              Prefer Email?
+            {/* Email Clickable (mailto) */}
+            <a
+              href="mailto:ahsankhan523123@gmail.com"
+              className="flex items-center gap-3 mt-6 text-white/90 hover:text-yellow-300 transition text-base md:text-lg"
+            >
               <FaEnvelope size={22} className="text-yellow-300" />
-              <span className="text-base md:text-lg">ahsankhan523123@gmail.com</span>
-            </div>
+              ahsankhan523123@gmail.com
+            </a>
           </div>
 
-          {/* ---------------- RIGHT FORM ---------------- */}
+          {/* RIGHT FORM */}
           <div className="bg-white p-6 md:p-10 rounded-2xl shadow-2xl w-full">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
               Send Me a Message
@@ -152,8 +153,9 @@ Message: ${form.message}`;
                 type="text"
                 name="name"
                 placeholder="Enter your full name"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl 
+                text-black placeholder:text-gray-500 focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400"
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -163,8 +165,9 @@ Message: ${form.message}`;
                 type="email"
                 name="email"
                 placeholder="Enter your professional email"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl
+                text-black placeholder:text-gray-500 focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400"
                 value={form.email}
                 onChange={handleChange}
                 required
@@ -174,8 +177,9 @@ Message: ${form.message}`;
                 name="message"
                 rows="5"
                 placeholder="Write your requirements and goals about your business and project..."
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl 
+                text-black placeholder:text-gray-500 focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400"
                 value={form.message}
                 onChange={handleChange}
                 required
@@ -184,7 +188,7 @@ Message: ${form.message}`;
               <button
                 type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold 
-                flex items-center justify-center gap-2 transition-transform transform hover:scale-105"
+                flex items-center justify-center gap-2 transition-transform hover:scale-105"
               >
                 Send via WhatsApp <FaWhatsapp size={20} />
               </button>
@@ -194,7 +198,6 @@ Message: ${form.message}`;
 
         </div>
       </div>
-
     </div>
   );
 }
