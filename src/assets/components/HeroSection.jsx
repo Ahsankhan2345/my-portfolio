@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ElectricBorder from "./ElectricBorder";
+import { useNavigate } from "react-router-dom";   // ✅ FIXED
 
 export default function HeroSection() {
 
-  // Deploy safe navigation (no 404 error)
+  const navigate = useNavigate();  // ✅ FIXED
+
+  // Safe navigation on deploy — NO 404 error
   const goToProjects = () => {
-    window.location.pathname = "/projects"; // ⬅ 404 fix
+    navigate("/projects");  // ✅ FIXED
   };
 
   return (
@@ -136,7 +139,6 @@ export default function HeroSection() {
             </p>
           </ElectricBorder>
         </motion.div>
-
       </div>
 
     </div>
