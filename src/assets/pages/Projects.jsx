@@ -182,7 +182,7 @@ function Projects() {
         {
             title: "My Portfolio Website",
             tech: "React, Tailwind CSS, Framer Motion",
-            image: "https://my-portfolio-lac-nine-28.vercel.app/ahsan-profile.jpg", 
+            image: "https://my-portfolio-lac-nine-28.vercel.app/ahsan-profile.png", 
             github: "https://github.com/Ahsankhan2345/my-portfolio",
             live: "https://my-portfolio-lac-nine-28.vercel.app/",
             underDevelopment: false,
