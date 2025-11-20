@@ -17,7 +17,7 @@ export default function Contact() {
     const msg = `Name: ${form.name}
 Email: ${form.email}
 Message: ${form.message}`;
-    const url = `https://wa.me/923001234567?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/923440217023?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 
@@ -87,24 +87,50 @@ Message: ${form.message}`;
 
             {/* Social Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <button className="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
-                <FaInstagram size={20} /> Connect on Instagram
-              </button>
 
-              <button className="w-full sm:w-auto bg-gradient-to-r from-[#2ad05f] to-[#0ca73f] text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/ahsankhan___23/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-3 
+                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
+                transition duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <FaInstagram size={20} /> Connect on Instagram
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/923440217023"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#2ad05f] to-[#0ca73f] text-white px-6 py-3 
+                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
+                transition duration-300 hover:scale-105 hover:shadow-xl"
+              >
                 <FaWhatsapp size={20} /> Chat on WhatsApp
-              </button>
+              </a>
+
             </div>
 
+            {/* LinkedIn */}
             <div className="mt-4 w-full sm:w-auto">
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-xl shadow-md flex items-center gap-2 justify-center">
+              <a
+                href="https://www.linkedin.com/in/ahsan-khan-04a8a0279/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 
+                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
+                transition duration-300 hover:scale-105 hover:shadow-xl"
+              >
                 <FaLinkedin size={20} /> Connect on LinkedIn
-              </button>
+              </a>
             </div>
 
             {/* Email */}
             <div className="flex items-center gap-3 mt-6 text-white/90">
-            Prefer Email?
+              Prefer Email?
               <FaEnvelope size={22} className="text-yellow-300" />
               <span className="text-base md:text-lg">ahsankhan523123@gmail.com</span>
             </div>
@@ -126,7 +152,8 @@ Message: ${form.message}`;
                 type="text"
                 name="name"
                 placeholder="Enter your full name"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400 transition"
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -136,7 +163,8 @@ Message: ${form.message}`;
                 type="email"
                 name="email"
                 placeholder="Enter your professional email"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400 transition"
                 value={form.email}
                 onChange={handleChange}
                 required
@@ -146,7 +174,8 @@ Message: ${form.message}`;
                 name="message"
                 rows="5"
                 placeholder="Write your requirements and goals about your business and project..."
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl focus:outline-blue-500 
+                focus:ring-2 focus:ring-blue-400 transition"
                 value={form.message}
                 onChange={handleChange}
                 required
@@ -154,7 +183,8 @@ Message: ${form.message}`;
 
               <button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-transform transform hover:scale-105"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold 
+                flex items-center justify-center gap-2 transition-transform transform hover:scale-105"
               >
                 Send via WhatsApp <FaWhatsapp size={20} />
               </button>
