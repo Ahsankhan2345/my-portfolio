@@ -9,6 +9,8 @@ import About from "./assets/pages/About.jsx";
 import Projects from "./assets/pages/Projects.jsx";
 import Contact from "./assets/pages/Contact.jsx";
 
+import Services from "./assets/pages/Services.jsx";
+
 function App() {
   
   useEffect(() => {
@@ -47,6 +49,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/services" element={<Services />} />
             </Routes>
           </div>
 
