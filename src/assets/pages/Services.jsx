@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom"; // ✅ Fixed: Link import added
 import { 
     Cpu, Zap, Layers, Search, Code, Terminal, Rocket, CheckCircle2, ArrowRight 
 } from "lucide-react";
@@ -110,7 +111,7 @@ export default function Services() {
                         ))}
                     </motion.div>
 
-                    {/* 2. Packages Section (NEW) */}
+                    {/* 2. Packages Section */}
                     <div className="mb-40">
                         <div className="text-center mb-20 space-y-4">
                             <h2 className="text-[10px] font-black tracking-[0.6em] uppercase text-emerald-500">Investment Tiers</h2>
@@ -139,11 +140,13 @@ export default function Services() {
                                         ))}
                                     </ul>
 
-                                    <button className={`w-full py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase transition-all flex items-center justify-center gap-2 ${
-                                        pkg.highlight ? 'bg-emerald-500 text-black hover:bg-emerald-400' : 'bg-white/5 text-white hover:bg-white/10'
-                                    }`}>
-                                        Get Started <ArrowRight size={14} />
-                                    </button>
+                                    <Link to="/contact">
+                                        <button className={`w-full py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase transition-all flex items-center justify-center gap-2 ${
+                                            pkg.highlight ? 'bg-emerald-500 text-black hover:bg-emerald-400' : 'bg-white/5 text-white hover:bg-white/10'
+                                        }`}>
+                                            Get Started <ArrowRight size={14} />
+                                        </button>
+                                    </Link>
                                 </motion.div>
                             ))}
                         </div>
@@ -175,21 +178,19 @@ export default function Services() {
                     </div>
 
                     {/* 4. CTA Section */}
-                    {/* 4. CTA Section */}
-<div className="group relative p-16 rounded-[3rem] bg-[#111] border border-white/5 text-center overflow-hidden">
-    <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
-    <div className="relative z-10">
-        <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tighter uppercase">Ready to start?</h3>
-        <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-light italic">"Let's architect the next great solution together."</p>
-        
-        {/* Yahan Link component add kiya gaya hai */}
-        <Link to="/contact">
-            <button className="relative px-12 py-5 bg-emerald-500 text-black font-black text-xs tracking-[0.3em] rounded-full uppercase hover:bg-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95">
-                Request a Consultation
-            </button>
-        </Link>
-    </div>
-</div>
+                    <div className="group relative p-16 rounded-[3rem] bg-[#111] border border-white/5 text-center overflow-hidden">
+                        <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
+                        <div className="relative z-10">
+                            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tighter uppercase">Ready to start?</h3>
+                            <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-light italic">"Let's architect the next great solution together."</p>
+                            
+                            <Link to="/contact">
+                                <button className="relative px-12 py-5 bg-emerald-500 text-black font-black text-xs tracking-[0.3em] rounded-full uppercase hover:bg-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95">
+                                    Request a Consultation
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
