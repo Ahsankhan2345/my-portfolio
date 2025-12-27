@@ -1,331 +1,193 @@
+import React from 'react';
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import {
-    FaLaptopCode,
-    FaRocket,
-    FaCodeBranch,
-    FaHandshake,
-    FaClipboardList,
-    FaChartLine,
-    FaCogs,
-    FaSearch,
-    FaPenNib
-} from "react-icons/fa";
+import { 
+    Cpu, Zap, Layers, Search, Code, Terminal, Rocket, CheckCircle2, ArrowRight 
+} from "lucide-react";
 
-// Animation Variants (No changes needed here, they are fine)
 const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-        },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
 };
 
-// Dummy FaCheck icon (must be outside the component or imported properly)
-const FaCheck = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>;
-
-
 export default function Services() {
-    // --- Service Data (No changes needed, data is perfect) ---
-    
     const coreServices = [
         {
             title: "Full-Stack MVP Development",
-            icon: <FaLaptopCode size={24} className="text-blue-400" />,
-            desc: "End-to-end MERN Stack development for launching Minimum Viable Products quickly and efficiently. Scalable architecture from day one.",
-            features: ["React/Tailwind Frontend", "Node/Express REST API", "MongoDB Setup"],
-            tag: "Primary",
-            color: "border-blue-500/50"
+            icon: <Terminal size={28} />,
+            desc: "End-to-end MERN Stack development for launching Minimum Viable Products quickly. Scalable architecture from day one.",
+            features: ["React/Tailwind Frontend", "Node/Express REST API", "MongoDB Architecture"],
         },
         {
-            title: "API & Backend Architecture",
-            icon: <FaCogs size={24} className="text-green-500" />,
-            desc: "Designing secure, high-performance RESTful APIs. Focus on clean code, JWT authentication, and database optimization.",
-            features: ["Microservices Approach", "Auth & Security Implementation", "Performance Tuning"],
-            tag: "Specialized",
-            color: "border-green-500/50"
+            title: "API & Backend Systems",
+            icon: <Cpu size={28} />,
+            desc: "Designing secure, high-performance RESTful APIs. Focus on clean code, JWT auth, and database optimization.",
+            features: ["Microservices", "JWT/OAuth Security", "Query Optimization"],
         },
         {
-            title: "React UI/UX Implementation",
-            icon: <FaPenNib size={24} className="text-pink-500" />,
-            desc: "Transforming design mockups (Figma, Sketch) into pixel-perfect, highly responsive, and dynamic React components using Tailwind CSS.",
-            features: ["Mobile-First Design", "Advanced State Management", "Cross-Browser Compatibility"],
-            tag: "Frontend",
-            color: "border-pink-500/50"
+            title: "React UI/UX Systems",
+            icon: <Layers size={28} />,
+            desc: "Transforming Figma designs into pixel-perfect, highly responsive React components with advanced state management.",
+            features: ["Framer Motion Animations", "Redux/Zustand State", "Mobile-First Design"],
         },
     ];
 
-    const packages = [
+    const pricingPackages = [
         {
-            name: "Starter (Consultation & Audit)",
-            price: "$250 (Flat Rate)",
-            desc: "Perfect for defining project scope, technology roadmaps, and reviewing existing codebases.",
-            features: ["1-hour Discovery Session", "Tech Stack Recommendation", "Detailed Project Blueprint"],
-            color: "from-gray-600 to-gray-800"
+            name: "Starter Prototype",
+            price: "$499",
+            features: ["Single Page React App", "Basic API Integration", "Mobile Responsive", "3 Days Delivery"],
+            highlight: false
         },
         {
-            name: "MVP Launch (Full-Stack)",
-            price: "Custom Quote",
-            desc: "Complete development of your initial web application product (MVP), ready for user testing and funding.",
-            features: ["Core Services Included", "Deployment & Hosting Setup", "30 Days Post-Launch Support"],
-            color: "from-purple-600 to-blue-500"
+            name: "MVP Launchpad",
+            price: "$1,499",
+            features: ["Full MERN Stack App", "User Authentication", "Admin Dashboard", "15 Days Delivery", "Priority Support"],
+            highlight: true
         },
         {
-            name: "Backend Scaling & Optimization",
-            price: "Custom Quote",
-            desc: "Focus on increasing the speed, scalability, and security of your existing Node.js application.",
-            features: ["Database Indexing", "API Stress Testing", "Security Review"],
-            color: "from-cyan-500 to-teal-400"
-        },
-    ];
-
-    const processSteps = [
-        { step: 1, title: "Discovery & Planning", icon: <FaSearch className="text-blue-400" />, desc: "Discuss goals, define scope, and prepare technical documentation." },
-        { step: 2, title: "Architecture & Design", icon: <FaClipboardList className="text-purple-400" />, desc: "Design database schemas, API endpoints, and system architecture." },
-        { step: 3, title: "Development Sprints", icon: <FaCodeBranch className="text-green-500" />, desc: "Agile development in short cycles with regular progress updates." },
-        { step: 4, title: "Testing & Review", icon: <FaRocket className="text-red-400" />, desc: "Thorough testing (unit & integration) and client feedback integration." },
-        { step: 5, title: "Deployment & Launch", icon: <FaChartLine className="text-cyan-400" />, desc: "Deploying the final product to your preferred hosting (Vercel/AWS/Heroku)." },
+            name: "Custom Enterprise",
+            price: "Custom",
+            features: ["Microservices Architecture", "Advanced Security", "Payment Gateways", "30 Days Support", "Scalability Audit"],
+            highlight: false
+        }
     ];
 
     return (
         <>
             <Helmet>
-                <title>Ahsan Khan — Services & Packages | MERN Stack Freelancer</title>
-                <meta
-                    name="description"
-                    content="Professional MERN Stack development services including React frontend, Node.js backend, and complete web application architecture."
-                />
+                <title>Services — Ahsan Khan | MERN Stack Architect</title>
             </Helmet>
 
-            {/* MAIN SECTION */}
-            <section 
-                id="services" 
-                className="relative pt-0 w-full overflow-hidden font-[Poppins,sans-serif] bg-[#0b0b12]"
-            >
-                
-                {/* 1. Animated Gradient Background (Z-10) */}
-                <div className="absolute inset-0 z-10 bg-gradient-to-br from-black via-[#0b0b12] to-[#0b0820] animate-gradientBackground"></div>
-                
-                {/* 2. Dark Overlay for Contrast (Z-20) */}
-                <div className="absolute inset-0 bg-black/50 z-20"></div>
-
-                {/* Main Content Area (Z-30) */}
-                <section className="relative w-full min-h-screen text-white px-4 sm:px-8 md:px-16 pt-24 sm:pt-28 pb-20 overflow-hidden z-30">
-                    <div className="max-w-7xl mx-auto space-y-20 sm:space-y-24">
-                        
-                        {/* ---------------------------------------------------- */}
-                        {/* 1. CORE SERVICES (THE VALUE PROPOSITION) */}
-                        {/* ---------------------------------------------------- */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.1 }}
-                            variants={containerVariants}
-                            className="pt-10"
-                        >
-                            <motion.h2 
-                                variants={itemVariants}
-                                className="text-3xl md:text-5xl font-extrabold mb-4 text-center"
-                            >
-                                MERN Stack {" "}
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-                                    Development
-                                </span>
-                            </motion.h2>
-                            <motion.p variants={itemVariants} className="text-base sm:text-lg text-gray-400 text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-                                I translate complex business ideas into high-performance, scalable web applications.
-                            </motion.p>
-
-                            {/* Responsive Grid: 1 Column -> 2 Columns -> 3 Columns */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                                {coreServices.map((service, index) => (
-                                    <motion.div
-                                        key={index}
-                                        variants={itemVariants}
-                                        whileHover={{ y: -6, boxShadow: "0 10px 40px rgba(100,50,200,0.2)" }}
-                                        className={`p-6 bg-white/5 border-t-4 ${service.color} rounded-xl space-y-4 backdrop-blur-sm cursor-pointer transition-shadow duration-300`}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            {service.icon}
-                                            <h3 className="text-lg sm:text-xl font-bold text-white">
-                                            {service.title}
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-300 text-sm">{service.desc}</p>
-                                        
-                                        <ul className="text-sm text-gray-400 list-disc list-inside space-y-1 pt-2">
-                                            {service.features.map((feature, i) => (
-                                                <li key={i} className="text-xs">{feature}</li>
-                                            ))}
-                                        </ul>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-
-                        {/* Horizontal Separator */}
-                        <hr className="border-t border-gray-700/50 max-w-4xl mx-auto my-12 sm:my-20" />
-
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.1 }}
-                            variants={containerVariants}
-                        >
-                            <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-extrabold mb-10 text-center">
-                                Flexible <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-green-500">
-                                    Packages
-                                </span>
-                            </motion.h2>
-
-                            {/* Responsive Grid: 1 Column -> 3 Columns (Stacked) */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {packages.map((pkg, index) => (
-                                    <motion.div
-                                        key={index}
-                                        variants={itemVariants}
-                                        // Highlight the middle package responsively
-                                        className={`p-6 sm:p-8 rounded-xl space-y-6 bg-gray-900 border border-purple-400/20 shadow-xl transition-all duration-300 
-                                            ${index === 1 ? 'md:scale-[1.05] md:shadow-[0_0_60px_rgba(168,85,247,0.3)] bg-gradient-to-br from-gray-900 to-black/80' : ''}`}
-                                    >
-                                        <h3 className={`text-xl sm:text-2xl font-extrabold ${index === 1 ? 'text-blue-400' : 'text-white'}`}>
-                                            {pkg.name}
-                                        </h3>
-                                        <p className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                                            {pkg.price}
-                                        </p>
-                                        <p className="text-gray-300 text-sm">{pkg.desc}</p>
-                                        
-                                        <ul className="space-y-3 text-sm text-gray-200 pt-3">
-                                            {pkg.features.map((f, i) => (
-                                                <li key={i} className="flex items-start gap-3">
-                                                    <FaCheck className="text-green-400 mt-1 flex-shrink-0 w-4 h-4" /> {f}
-                                                </li>
-                                            ))}
-                                        </ul>
-
-                                        <a 
-                                            href="#contact"
-                                            className={`block w-full text-center py-3 rounded-lg font-bold transition-all mt-6 sm:mt-8
-                                                ${index === 1 ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-gray-900 hover:scale-[1.02]' : 'bg-gray-700 text-white hover:bg-gray-600'}`}
-                                        >
-                                            {index === 0 ? "Book a Session" : "Request Quote"}
-                                        </a>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                        
-                        {/* Horizontal Separator */}
-                        <hr className="border-t border-gray-700/50 max-w-4xl mx-auto my-12 sm:my-20" />
-
-                       
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.1 }}
-                            variants={containerVariants}
-                            className="pt-10"
-                        >
-                            <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-extrabold mb-12 text-center">
-                                My <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-red-400">
-                                    Process
-                                </span>
-                            </motion.h2>
-                            
-                            <div className="relative flex flex-col items-center">
-                                {/* Timeline Line (Hidden on Mobile, Visible on Desktop) */}
-                                <div className="hidden md:block absolute h-full w-0.5 bg-gray-700 top-0 left-1/2 transform -translate-x-1/2"></div>
-                                
-                                <div className="w-full">
-                                {processSteps.map((step, index) => (
-                                    <motion.div
-                                        key={index}
-                                        variants={itemVariants}
-                                        // Alternating layout for medium screens and up
-                                        className={`flex flex-col md:flex-row mb-12 relative ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                                    >
-                                        <div className="md:w-1/2 p-4">
-                                            <motion.div 
-                                                className={`p-6 rounded-xl bg-gray-900 border border-gray-700/50 space-y-2 transition-all duration-300 hover:border-blue-400/50 
-                                                    ${index % 2 === 0 ? 'md:text-right md:ml-auto md:max-w-md' : 'md:mr-auto md:max-w-md'}`}
-                                                whileHover={{ y: -4 }}
-                                            >
-                                                <h4 className={`text-lg sm:text-xl font-bold text-white flex items-center gap-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                                                    {/* Icon Placement Logic */}
-                                                    {index % 2 !== 0 && step.icon}
-                                                    <span className={`text-xl sm:text-2xl font-extrabold ${step.icon.props.className.replace('text-', 'text-')}`}>{`0${step.step}.`}</span> {step.title}
-                                                    {index % 2 === 0 && step.icon}
-                                                </h4>
-                                                <p className="text-gray-400 text-sm">{step.desc}</p>
-                                            </motion.div>
-                                        </div>
-                                        
-                                        {/* Circle Indicator (Desktop Only) */}
-                                        <div className="hidden md:flex absolute top-0 h-full w-full items-start justify-center">
-                                            <motion.div 
-                                                initial={{ scale: 0 }}
-                                                whileInView={{ scale: 1 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: 0.1 }}
-                                                className={`w-6 h-6 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 shadow-xl border-2 border-gray-900 mt-8`}
-                                            ></motion.div>
-                                        </div>
-                                        
-                                        <div className="md:w-1/2"></div>
-                                    </motion.div>
-                                ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                        
-                        {/* Horizontal Separator */}
-                        <hr className="border-t border-gray-700/50 max-w-4xl mx-auto my-12 sm:my-20" />
-
+            <div className="bg-[#080808] text-[#e5e7eb] min-h-screen selection:bg-emerald-500/30 pb-20 font-sans overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-40">
                     
-                        <motion.div 
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="text-center py-10 sm:py-16 px-4 rounded-xl bg-gradient-to-r from-gray-900 to-black/80 border border-purple-500/30 shadow-2xl"
-                        >
-                            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">Ready to Start Your Project?</h3>
-                            <p className="text-base sm:text-lg text-gray-400 mb-8">
-                                Let's discuss your vision and build the next great web application together.
-                            </p>
-                            <a
-                                href="/contact"
-                                className="inline-flex items-center gap-2 px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg text-white font-bold text-base sm:text-lg shadow-xl hover:scale-105 transition"
-                            >
-                                <FaHandshake className="w-5 h-5"/> Get a Free Consultation
-                            </a>
-                        </motion.div>
-                        
+                    {/* Header */}
+                    <div className="text-center mb-32 space-y-4">
+                        <h2 className="text-[10px] font-black tracking-[0.6em] uppercase text-emerald-500">Expertise & Solutions</h2>
+                        <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white">
+                            CORE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-blue-600 font-black">SERVICES.</span>
+                        </h1>
                     </div>
-                </section>
-            </section>
 
-            {/* ANIMATIONS (Same as About.jsx) */}
-            <style>
-                {`
-                    @keyframes gradientBackground {
-                        0%, 100% { background-position: 0% 50%; }
-                        50% { background-position: 100% 50%; }
-                    }
-                    .animate-gradientBackground {
-                        background-size: 400% 400%;
-                        animation: gradientBackground 18s ease infinite;
-                    }
-                `}
-            </style>
+                    {/* 1. Core Services Grid */}
+                    <motion.div 
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40"
+                    >
+                        {coreServices.map((service, i) => (
+                            <motion.div 
+                                key={i}
+                                variants={itemVariants}
+                                className="group relative p-10 bg-[#111] rounded-[2.5rem] border border-white/5 overflow-hidden transition-all duration-700 hover:border-emerald-500/30 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)]"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out"></div>
+                                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-emerald-500/10 blur-[80px] rounded-full group-hover:bg-emerald-500/20 group-hover:scale-150 transition-all duration-1000"></div>
+                                
+                                <div className="relative z-10">
+                                    <div className="mb-8 p-4 w-fit rounded-2xl bg-white/5 border border-white/10 text-emerald-400 group-hover:text-black group-hover:bg-emerald-500 transition-all duration-500 ease-out">
+                                        {service.icon}
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:translate-x-1 transition-transform duration-500">{service.title}</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-8 group-hover:text-slate-200 transition-colors duration-500">{service.desc}</p>
+                                    <ul className="space-y-3">
+                                        {service.features.map((f, idx) => (
+                                            <li key={idx} className="flex items-center text-[10px] font-bold text-slate-500 uppercase tracking-widest group-hover:text-emerald-400/80 transition-colors duration-500">
+                                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3 shadow-[0_0_8px_#10b981]"></span> {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* 2. Packages Section (NEW) */}
+                    <div className="mb-40">
+                        <div className="text-center mb-20 space-y-4">
+                            <h2 className="text-[10px] font-black tracking-[0.6em] uppercase text-emerald-500">Investment Tiers</h2>
+                            <h2 className="text-5xl font-bold text-white tracking-tighter uppercase">Flexible Packages</h2>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {pricingPackages.map((pkg, i) => (
+                                <motion.div 
+                                    key={i}
+                                    whileHover={{ y: -10 }}
+                                    className={`relative p-12 rounded-[3rem] border transition-all duration-500 group overflow-hidden ${
+                                        pkg.highlight 
+                                        ? 'bg-[#111] border-emerald-500 shadow-[0_20px_60px_-15px_rgba(16,185,129,0.2)]' 
+                                        : 'bg-[#0c0c0c] border-white/5 hover:border-emerald-500/20'
+                                    }`}
+                                >
+                                    <h3 className="text-emerald-500 text-[10px] font-black tracking-widest uppercase mb-6">{pkg.name}</h3>
+                                    <div className="text-5xl font-black text-white mb-8 tracking-tighter">{pkg.price}</div>
+                                    
+                                    <ul className="space-y-4 mb-12">
+                                        {pkg.features.map((feat, idx) => (
+                                            <li key={idx} className="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-tight">
+                                                <CheckCircle2 size={16} className="text-emerald-500" /> {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <button className={`w-full py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase transition-all flex items-center justify-center gap-2 ${
+                                        pkg.highlight ? 'bg-emerald-500 text-black hover:bg-emerald-400' : 'bg-white/5 text-white hover:bg-white/10'
+                                    }`}>
+                                        Get Started <ArrowRight size={14} />
+                                    </button>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* 3. Engineering Process */}
+                    <div className="mb-40">
+                        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+                            <h2 className="text-5xl font-bold text-white tracking-tighter uppercase">Engineering Process</h2>
+                            <p className="text-slate-500 max-w-sm text-sm italic">"Systematic thinking for complex problems."</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            {[
+                                { step: "01", title: "Discovery", icon: <Search size={20}/>, desc: "Scope definition." },
+                                { step: "02", title: "Architecture", icon: <Code size={20}/>, desc: "Schema design." },
+                                { step: "03", title: "Development", icon: <Terminal size={20}/>, desc: "Agile sprints." },
+                                { step: "04", title: "QA & Testing", icon: <Zap size={20}/>, desc: "Rigorous testing." },
+                                { step: "05", title: "Deployment", icon: <Rocket size={20}/>, desc: "Production launch." },
+                            ].map((step, i) => (
+                                <div key={i} className="group relative p-8 bg-[#111] border border-white/5 rounded-3xl overflow-hidden transition-all duration-500 hover:bg-[#151515]">
+                                    <div className="absolute bottom-0 left-0 w-full h-0 bg-emerald-500/5 group-hover:h-full transition-all duration-500"></div>
+                                    <span className="relative z-10 text-4xl font-black text-white/5 block mb-4 group-hover:text-emerald-500/20 transition-colors">{step.step}</span>
+                                    <div className="relative z-10 text-emerald-400 mb-6 group-hover:scale-110 transition-transform duration-500">{step.icon}</div>
+                                    <h4 className="relative z-10 text-lg font-bold text-white mb-2">{step.title}</h4>
+                                    <p className="relative z-10 text-xs text-slate-500 leading-relaxed group-hover:text-slate-400 transition-colors">{step.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* 4. CTA Section */}
+                    <div className="group relative p-16 rounded-[3rem] bg-[#111] border border-white/5 text-center overflow-hidden">
+                        <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
+                        <div className="relative z-10">
+                            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tighter uppercase">Ready to start?</h3>
+                            <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-light italic">"Let's architect the next great solution together."</p>
+                            <button className="relative px-12 py-5 bg-emerald-500 text-black font-black text-xs tracking-[0.3em] rounded-full uppercase hover:bg-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95">
+                                Request a Consultation
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </>
     );
 }

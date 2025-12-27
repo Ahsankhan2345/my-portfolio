@@ -5,331 +5,191 @@ import {
   FaNodeJs,
   FaDatabase,
   FaPaintBrush,
-  FaCss3Alt,
   FaCode,
   FaBrain,
+  FaDownload,
 } from "react-icons/fa";
+import { SiOpenai, SiLangchain, SiTailwindcss } from "react-icons/si";
 
 export default function About() {
   return (
     <>
       <Helmet>
-        <title>Ahsan Khan — About | MERN Stack Developer</title>
-        <meta
-          name="description"
-          content="Ahsan Khan — MERN Stack Developer. I build scalable React + Node.js apps with clean architecture, responsive UI and performance-first approach."
-        />
-        <meta
-          property="og:title"
-          content="Ahsan Khan — MERN Stack Developer"
-        />
-        <meta
-          property="og:description"
-          content="MERN Stack developer specializing in React, Node.js, Express and MongoDB. Portfolio of modern, responsive web apps."
-        />
-        <meta property="og:image" content="/about-profile.png" />
+        <title>Ahsan Khan — Architecting Intelligence</title>
+        <meta name="description" content="About Ahsan Khan - AI Automation & MERN Specialist" />
       </Helmet>
 
-      {/* MAIN SECTION */}
-      <section className="relative pt-0 min-h-screen w-full overflow-hidden font-[Poppins,sans-serif]">
-        {/* BG VIDEO */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-20"
-        >
-          <source src="/videos/bg-about1.mp4" type="video/mp4" />
-        </video>
+      {/* MAIN CONTAINER */}
+      <section className="relative min-h-screen w-full bg-[#080808] text-[#e5e7eb] overflow-hidden font-sans selection:bg-[#10b981]/30">
+        
+        {/* BACKGROUND ARCHITECTURE (Matching Hero) */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-[10%] right-[-5%] w-[40%] h-[40%] bg-[radial-gradient(circle,rgba(16,185,129,0.05)_0%,transparent_70%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-[#080808]"></div>
+        </div>
 
-        <div className="absolute inset-0 bg-black/40 z-30"></div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-black via-[#0b0b12] to-[#0b0820] animate-gradientBackground"></div>
-
-        <section className="relative w-full min-h-screen text-white px-6 md:px-16 pt-20 pb-20 overflow-hidden z-40">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-20">
-            {/* LEFT SIDE — ORBIT */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            {/* LEFT SIDE — THE HOLOGRAPHIC ORBIT */}
             <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex flex-col items-center lg:items-start gap-8"
+              transition={{ duration: 1 }}
+              className="relative flex items-center justify-center py-12"
             >
-              <div className="relative w-full flex items-center justify-center py-10">
-                <div className="relative w-64 h-64 md:w-[420px] md:h-[420px] flex items-center justify-center">
+              {/* Pulsing Outer Glow */}
+              <div className="absolute w-72 h-72 md:w-[450px] md:h-[450px] bg-[#10b981]/5 blur-[100px] rounded-full animate-pulse"></div>
 
-                  {/* OUTER ORBIT CLOCKWISE */}
-                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] 
-                    rounded-full border border-white/30 rotate-clockwise">
-                  </div>
+              <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] flex items-center justify-center">
+                {/* ORBIT LINES */}
+                <div className="absolute inset-0 rounded-full border border-emerald-500/10 rotate-clockwise"></div>
+                <div className="absolute inset-12 rounded-full border border-blue-500/10 rotate-anticlockwise"></div>
+                <div className="absolute inset-24 rounded-full border border-white/5"></div>
 
-                  {/* INNER ORBIT ANTI-CLOCKWISE */}
-                  <div className="absolute w-[230px] h-[230px] md:w-[300px] md:h-[300px] 
-                    rounded-full border border-white/20 rotate-anticlockwise">
-                  </div>
+                {/* SPINNING ICONS (Emerald Theme) */}
+                <div className="absolute inset-0 rotate-clockwise-fast">
+                  <FloatingOrbitIcon Icon={FaReact} color="text-blue-400" top="-20px" left="50%" />
+                  <FloatingOrbitIcon Icon={FaNodeJs} color="text-emerald-500" bottom="-20px" left="50%" />
+                  <FloatingOrbitIcon Icon={SiOpenai} color="text-white" left="-20px" top="50%" />
+                  <FloatingOrbitIcon Icon={SiLangchain} color="text-yellow-500" right="-20px" top="50%" />
+                </div>
 
-                  {/* ICONS CONTAINER — FAST CLOCKWISE */}
-                  <div className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] rotate-clockwise-fast">
-
-                    {/* REACT */}
-                    <div className="orbit-icon rotate-anticlockwise">
-                      <FaReact size={20} className="text-blue-400" />
-                    </div>
-
-                    {/* NODE */}
-                    <div className="orbit-icon2 rotate-clockwise">
-                      <FaNodeJs size={20} className="text-green-500" />
-                    </div>
-
-                    {/* MONGO */}
-                    <div className="orbit-icon3 rotate-anticlockwise">
-                      <FaDatabase size={20} className="text-green-700" />
-                    </div>
-
-                    {/* UI/UX */}
-                    <div className="orbit-icon4 rotate-clockwise">
-                      <FaPaintBrush size={20} className="text-pink-500" />
-                    </div>
-
-                    {/* BRAIN */}
-                    <div className="orbit-icon5 rotate-anticlockwise">
-                      <FaBrain size={20} className="text-red-400" />
-                    </div>
-                  </div>
-
-                  {/* CENTER IMAGE */}
-                  <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden bg-white/10 backdrop-blur-xl shadow-xl z-20">
+                {/* CENTER PROFILE WITH GLASSMISM */}
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                  <div className="relative w-44 h-44 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10 bg-[#111] backdrop-blur-2xl">
                     <img
                       src="/about-profile.png"
                       alt="Ahsan Khan"
-                      className="w-full h-full object-cover rounded-full"
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     />
                   </div>
                 </div>
               </div>
-
-              {/* STATS */}
-              <div className="w-full grid grid-cols-3 gap-4 md:gap-6">
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-extrabold">+2</p>
-                  <p className="text-xs text-gray-300">Years Experience</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-extrabold">10+</p>
-                  <p className="text-xs text-gray-300">Projects</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-extrabold">5+</p>
-                  <p className="text-xs text-gray-300">Clients</p>
-                </div>
-              </div>
             </motion.div>
 
-            {/* RIGHT SIDE CONTENT */}
+            {/* RIGHT SIDE — CONTENT */}
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h2 className="text-3xl md:text-4xl font-extrabold">
-                About{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-                  Me
-                </span>
-              </h2>
-
-              <p className="text-gray-300 max-w-xl leading-relaxed">
-                Hi, I’m <strong>Ahsan Khan</strong> — a MERN Stack developer
-                focused on building scalable, production-ready web applications.
-                I build intuitive user interfaces with React and Tailwind,
-                design clean backend APIs with Node.js & Express, and store data
-                reliably with MongoDB.
-              </p>
-
-              <p className="text-gray-300 max-w-xl leading-relaxed">
-                I treat every project like a product: planning architecture,
-                writing modular code, and keeping performance and accessibility
-                in mind.
-              </p>
-
-              <div className="flex flex-wrap gap-4 items-center">
-                <a
-                  href="/Ahsan-CV.pdf"
-                  download
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg text-white font-semibold shadow-md hover:scale-105 transition"
-                >
-                  Download CV
-                </a>
-
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-3 border border-gray-700 rounded-lg text-gray-200 hover:bg-gray-800 transition"
-                >
-                  Hire Me
-                </a>
+              <div className="space-y-4">
+                <h2 className="text-sm font-black tracking-[0.5em] uppercase text-emerald-500">The Architect</h2>
+                <h3 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">
+                  Decoding <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">Complexity.</span>
+                </h3>
+                <p className="text-slate-400 text-lg font-light leading-relaxed max-w-xl">
+                  I treat code as an art form. From architecting scalable <span className="text-white font-medium text-emerald-400/80 underline decoration-emerald-500/30">MERN</span> systems to training autonomous <span className="text-white font-medium">AI Agents</span>, my goal is to bridge the gap between human logic and machine efficiency.
+                </p>
               </div>
 
-              {/* SKILLS */}
-              <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {[
-                  {
-                    icon: <FaReact size={20} className="text-blue-400" />,
-                    label: "React.js",
-                  },
-                  {
-                    icon: <FaNodeJs size={20} className="text-green-500" />,
-                    label: "Node.js",
-                  },
-                  {
-                    icon: <FaDatabase size={20} className="text-green-700" />,
-                    label: "MongoDB",
-                  },
-                  {
-                    icon: <FaCss3Alt size={20} className="text-blue-500" />,
-                    label: "Tailwind CSS",
-                  },
-                  {
-                    icon: <FaCode size={20} className="text-yellow-400" />,
-                    label: "REST APIs",
-                  },
-                  {
-                    icon: <FaBrain size={20} className="text-red-400" />,
-                    label: "AI/ML Integration",
-                  },
-                  {
-                    icon: <FaPaintBrush size={20} className="text-pink-500" />,
-                    label: "UI/UX",
-                  },
-                ].map((s, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -4 }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/6"
-                  >
-                    <div>{s.icon}</div>
-                    <div>
-                      <p className="text-sm font-semibold">{s.label}</p>
-                      <p className="text-xs text-gray-400">Intermediate</p>
-                    </div>
-                  </motion.div>
-                ))}
+              {/* DYNAMIC STATS CARD */}
+              <div className="grid grid-cols-3 gap-4 py-6 border-y border-white/5">
+                <StatBox number="+2" label="Years Experience" />
+                <StatBox number="15+" label="Deep Projects" />
+                <StatBox number="100%" label="Uptime Logic" />
+              </div>
+
+              {/* ACTION BUTTONS */}
+              <div className="flex flex-wrap gap-5">
+                <motion.a
+                  whileHover={{ y: -5 }}
+                  href="/Ahsan-CV.pdf"
+                  className="flex items-center gap-3 px-8 py-4 bg-white text-black font-black rounded-2xl text-sm tracking-widest hover:bg-emerald-500 hover:text-white transition-all"
+                >
+                  <FaDownload /> DOWNLOAD CV
+                </motion.a>
+                <motion.a
+                  whileHover={{ y: -5 }}
+                  href="/contact"
+                  className="px-8 py-4 border border-white/10 rounded-2xl text-sm font-bold tracking-widest hover:bg-white/5 transition-all"
+                >
+                  GET IN TOUCH
+                </motion.a>
               </div>
             </motion.div>
           </div>
 
-          {/* EXPERIENCE TIMELINE — SAME AS YOUR ORIGINAL */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto mt-12 relative z-20"
-          >
-            <h3 className="text-3xl md:text-4xl font-extrabold mb-10 text-white">
-              Experience
-            </h3>
-
-            <div className="relative border-l-2 border-gray-600 pl-10 space-y-12">
-              {[
-                {
-                  year: "2025 – Present",
-                  title: "Head of Web Development — DeepVision.ai",
-                  desc: "Leading the web development department, architecting scalable web applications, mentoring a team of developers, and implementing cutting-edge UI/UX designs.",
-                  color: "from-purple-500 to-pink-500",
-                },
-                {
-                  year: "2024 – 2025",
-                  title: "Full-stack Developer — Hashmakers Solutions",
-                  desc: "Built robust MERN stack applications, developed REST APIs, integrated databases, and optimized frontend performance.",
-                  color: "from-blue-500 to-cyan-400",
-                },
-                {
-                  year: "2023 – 2024",
-                  title: "WordPress Developer — Top Digital Experts",
-                  desc: "Designed custom WordPress themes, optimized websites for performance and SEO, and provided client support and maintenance.",
-                  color: "from-green-400 to-teal-400",
-                },
-              ].map((job, idx) => (
-                <div key={idx} className="relative group">
-                  <div className="absolute -left-28 top-0 w-28 text-right text-sm font-medium text-gray-400">
-                    {job.year}
-                  </div>
-
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className={`absolute -left-[14px] w-5 h-5 rounded-full mt-1 bg-gradient-to-tr ${job.color} shadow-lg transition-transform duration-300 group-hover:scale-125`}
-                  ></motion.div>
-
-                  <div className="pl-10">
-                    <h4 className="text-lg md:text-xl font-semibold text-white group-hover:text-gray-300 transition-colors duration-300">
-                      {job.title}
-                    </h4>
-                    <p className="text-gray-400 mt-2">{job.desc}</p>
-                  </div>
-                </div>
-              ))}
+          {/* EXPERIENCE BENTO GRID */}
+          <div className="mt-40 space-y-12">
+            <h4 className="text-3xl font-bold tracking-tighter border-l-4 border-emerald-500 pl-6">Professional Timeline</h4>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <ExperienceCard 
+                year="2025 - Present"
+                title="Head of Dev"
+                company="DeepVision.ai"
+                desc="Leading high-concurrency architecture and AI workflow integration."
+                isPrimary={true}
+              />
+              <ExperienceCard 
+                year="2024 - 2025"
+                title="Fullstack Dev"
+                company="Hashmakers"
+                desc="Optimized production MERN apps for 40% faster response times."
+              />
+              <ExperienceCard 
+                year="2023 - 2024"
+                title="Web Specialist"
+                company="Digital Experts"
+                desc="Custom theme engineering and SEO performance scaling."
+              />
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </div>
       </section>
 
-      {/* ANIMATIONS */}
-      <style>
-        {`
-          @keyframes gradientBackground {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-          }
-          .animate-gradientBackground {
-            background-size: 400% 400%;
-            animation: gradientBackground 15s ease infinite;
-          }
-
-          /* ROTATIONS */
-          @keyframes spinClockwise {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          @keyframes spinAntiClockwise {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-          }
-
-          .rotate-clockwise {
-            animation: spinClockwise 25s linear infinite;
-          }
-          .rotate-anticlockwise {
-            animation: spinAntiClockwise 30s linear infinite;
-          }
-          .rotate-clockwise-fast {
-            animation: spinClockwise 12s linear infinite;
-          }
-
-          /* ICON POSITIONS */
-          .orbit-icon, .orbit-icon2, .orbit-icon3, .orbit-icon4, .orbit-icon5 {
-            width: 40px; 
-            height: 40px;
-            border-radius: 9999px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            position: absolute;
-          }
-          .orbit-icon { top: -20px; left: 50%; transform: translateX(-50%); }
-          .orbit-icon2 { right: -20px; top: 50%; transform: translateY(-50%); }
-          .orbit-icon3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
-          .orbit-icon4 { left: -20px; top: 50%; transform: translateY(-50%); }
-          .orbit-icon5 { top: 10%; right: 10%; }
-        `}
-      </style>
+      {/* STYLES */}
+      <style>{`
+        @keyframes spinClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinAnti { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        .rotate-clockwise { animation: spinClockwise 40s linear infinite; }
+        .rotate-anticlockwise { animation: spinAnti 30s linear infinite; }
+        .rotate-clockwise-fast { animation: spinClockwise 20s linear infinite; }
+      `}</style>
     </>
+  );
+}
+
+// HELPER COMPONENTS
+function FloatingOrbitIcon({ Icon, color, top, left, bottom, right }) {
+  return (
+    <div 
+      style={{ top, left, bottom, right }}
+      className={`absolute w-12 h-12 rounded-xl bg-[#080808] border border-white/10 flex items-center justify-center text-xl ${color} shadow-2xl backdrop-blur-xl`}
+    >
+      <Icon className="animate-spin-slow" style={{ animationDuration: '8s' }} />
+    </div>
+  );
+}
+
+function StatBox({ number, label }) {
+  return (
+    <div className="text-left group">
+      <p className="text-3xl font-black text-white group-hover:text-emerald-400 transition-colors">{number}</p>
+      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">{label}</p>
+    </div>
+  );
+}
+
+function ExperienceCard({ year, title, company, desc, isPrimary }) {
+  return (
+    <motion.div 
+      whileHover={{ y: -10 }}
+      className={`p-8 rounded-[2rem] border transition-all ${
+        isPrimary ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-white/[0.02] border-white/5 hover:border-white/10'
+      }`}
+    >
+      <span className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em]">{year}</span>
+      <h5 className="text-xl font-bold mt-2 text-white">{title}</h5>
+      <p className="text-sm text-slate-400 mb-4">{company}</p>
+      <p className="text-sm text-slate-500 leading-relaxed font-light">{desc}</p>
+    </motion.div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FaWhatsapp, FaCheckCircle, FaEnvelope, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaWhatsapp, FaCheckCircle, FaEnvelope, FaLinkedin, FaInstagram, FaArrowRight } from "react-icons/fa";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -14,187 +15,158 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = `Name: ${form.name}
-Email: ${form.email}
-Message: ${form.message}`;
+    const msg = `Name: ${form.name}\nEmail: ${form.email}\nMessage: ${form.message}`;
     const url = `https://wa.me/923440217023?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center">
-
-      {/* Background Video */}
+    <div className="relative w-full min-h-screen bg-[#080808] font-sans selection:bg-emerald-500/30">
+      
+      {/* Background Video with subtle overlay */}
       <video
         src="/videos/bg-about1.mp4"
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
       ></video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+      {/* Overlay - Gradient adds depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/80 via-transparent to-[#080808] backdrop-blur-[2px]"></div>
 
       {/* MAIN CONTENT */}
-      <div className="relative w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6">
-        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* LEFT SIDE */}
-          <div className="flex flex-col justify-center text-white space-y-6">
-
-            {/* Profile Card */}
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 flex items-center gap-4 shadow-xl">
+          {/* LEFT SIDE: Info & Branding */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-10"
+          >
+            {/* Profile Card - Glass effect */}
+            <div className="inline-flex items-center gap-4 p-3 pr-8 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl">
               <img
                 src="/ahsan-profile1.png"
-                alt="Profile"
-                className="w-16 h-16 rounded-full object-cover border-2 border-white/40"
+                alt="Ahsan Khan"
+                className="w-14 h-14 rounded-full object-cover border-2 border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.3)]"
               />
               <div>
-                <h3 className="text-xl font-semibold">Ahsan Khan</h3>
-                <p className="text-white/70 text-sm md:text-base">Professional Web Developer</p>
+                <h3 className="text-white font-bold tracking-tight">Ahsan Khan</h3>
+                <p className="text-emerald-500 text-[10px] font-black uppercase tracking-widest">Available for Hire</p>
               </div>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl font-bold leading-snug">
-              Get in Touch <br />
-              Let’s Build Something <br />
-              Amazing Together
+            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none uppercase">
+              Let’s build <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-blue-500">
+                Something Great.
+              </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-white/70 text-base md:text-lg max-w-md">
-              Whether you need a new website, want to improve your existing one,
-              or need a reliable developer — I’m here to help.
-              <br />
-              <span className="font-semibold text-white">I respond within 24 hours.</span>
+            <p className="text-slate-400 text-lg max-w-md font-light leading-relaxed">
+              Have an idea or a complex problem? I specialize in transforming visions into 
+              <span className="text-white font-medium"> high-performance MERN Stack </span> solutions.
             </p>
 
-            {/* Bullet Points */}
-            <div className="space-y-2 md:space-y-3">
-              <div className="flex items-center gap-2 text-base md:text-lg">
-                <FaCheckCircle className="text-green-400" /> Modern & Responsive Websites
-              </div>
-              <div className="flex items-center gap-2 text-base md:text-lg">
-                <FaCheckCircle className="text-green-400" /> Complete Frontend / Backend Solutions
-              </div>
-              <div className="flex items-center gap-2 text-base md:text-lg">
-                <FaCheckCircle className="text-green-400" /> Website Fixing & Performance Optimization
-              </div>
+            {/* Features List */}
+            <div className="space-y-4">
+              {[
+                "Modern & Responsive Interfaces",
+                "Scalable Backend Architecture",
+                "Security & Performance Audits"
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-slate-300 font-medium tracking-tight">
+                  <FaCheckCircle className="text-emerald-500" /> {item}
+                </div>
+              ))}
             </div>
 
-            {/* Social Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/ahsankhan___23/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-3 
-                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
-                transition duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                <FaInstagram size={20} /> Connect on Instagram
+            {/* Social Connect - Modern Pill Style */}
+            <div className="flex flex-wrap gap-4 pt-6">
+              <a href="https://wa.me/923440217023" target="_blank" className="p-4 bg-emerald-500 text-black rounded-2xl hover:bg-emerald-400 transition-all hover:-translate-y-1 shadow-lg shadow-emerald-500/20">
+                <FaWhatsapp size={24} />
               </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/923440217023"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-gradient-to-r from-[#2ad05f] to-[#0ca73f] text-white px-6 py-3 
-                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
-                transition duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                <FaWhatsapp size={20} /> Chat on WhatsApp
+              <a href="https://www.linkedin.com/in/ahsan-khan-04a8a0279/" target="_blank" className="p-4 bg-white/5 border border-white/10 text-white rounded-2xl hover:bg-white/10 transition-all hover:-translate-y-1">
+                <FaLinkedin size={24} />
+              </a>
+              <a href="https://www.instagram.com/ahsankhan___23/" target="_blank" className="p-4 bg-white/5 border border-white/10 text-white rounded-2xl hover:bg-white/10 transition-all hover:-translate-y-1">
+                <FaInstagram size={24} />
+              </a>
+              <a href="mailto:ahsankhan523123@gmail.com" className="flex items-center gap-3 px-6 bg-white/5 border border-white/10 text-white rounded-2xl hover:bg-white/10 transition-all hover:-translate-y-1">
+                <FaEnvelope className="text-emerald-400" /> <span className="text-sm font-bold uppercase tracking-widest">Email Me</span>
               </a>
             </div>
+          </motion.div>
 
-            {/* LinkedIn */}
-            <div className="mt-4 w-full sm:w-auto">
-              <a
-                href="https://www.linkedin.com/in/ahsan-khan-04a8a0279/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 
-                rounded-xl shadow-md flex items-center gap-2 justify-center transform 
-                transition duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                <FaLinkedin size={20} /> Connect on LinkedIn
-              </a>
+          {/* RIGHT SIDE: The Form */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative group"
+          >
+            {/* Background Glow */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            
+            <div className="relative bg-[#111]/90 backdrop-blur-3xl border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
+              <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Estimate Project</h2>
+              <p className="text-slate-500 mb-8 text-sm uppercase tracking-[0.2em] font-black">Fill the details below</p>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-emerald-500 tracking-widest ml-1">Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="e.g. John Doe"
+                    className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-emerald-500 tracking-widest ml-1">Work Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="john@company.com"
+                    className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-emerald-500 tracking-widest ml-1">Project Details</label>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    placeholder="Tell me about your goals..."
+                    className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all resize-none"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full group bg-emerald-500 hover:bg-emerald-400 text-black py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-all active:scale-95 shadow-xl shadow-emerald-500/10"
+                >
+                  Send Proposal <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </form>
             </div>
-
-            {/* Email Clickable (mailto) */}
-            <a
-              href="mailto:ahsankhan523123@gmail.com"
-              className="flex items-center gap-3 mt-6 text-white/90 hover:text-yellow-300 transition text-base md:text-lg"
-            >
-              <FaEnvelope size={22} className="text-yellow-300" />
-              ahsankhan523123@gmail.com
-            </a>
-          </div>
-
-          {/* RIGHT FORM */}
-          <div className="bg-white p-6 md:p-10 rounded-2xl shadow-2xl w-full">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
-              Send Me a Message
-            </h2>
-
-            <p className="text-center text-gray-600 mb-6 text-sm md:text-base">
-              Fill out the form and I’ll get back to you within 24 hours.
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
-
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your full name"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl 
-                text-black placeholder:text-gray-500 focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your professional email"
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl
-                text-black placeholder:text-gray-500 focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Write your requirements and goals about your business and project..."
-                className="w-full p-3 md:p-3.5 border border-gray-300 rounded-xl 
-                text-black placeholder:text-gray-500 focus:outline-blue-500 
-                focus:ring-2 focus:ring-blue-400"
-                value={form.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-
-              <button
-                type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold 
-                flex items-center justify-center gap-2 transition-transform hover:scale-105"
-              >
-                Send via WhatsApp <FaWhatsapp size={20} />
-              </button>
-
-            </form>
-          </div>
+          </motion.div>
 
         </div>
       </div>

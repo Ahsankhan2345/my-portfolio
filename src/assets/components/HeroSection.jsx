@@ -1,184 +1,163 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import React from "react";
-
-// ANIMATION VARIANTS
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
+import React, { useRef } from "react";
+import { SiOpenai, SiLangchain, SiMongodb, SiNodedotjs, SiReact, SiTailwindcss, SiFramer } from "react-icons/si";
 
 export default function HeroSection() {
   const navigate = useNavigate();
-  const goToProjects = () => navigate("/projects");
+  const containerRef = useRef(null);
+
+  // Mouse Tracking for 3D Parallax
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+  
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden text-white">
-
-      {/* META TAGS */}
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen w-full bg-[#080808] text-[#e5e7eb] overflow-hidden font-sans selection:bg-[#10b981]/30"
+    >
       <Helmet>
-        <title>Ahsan Khan | Full Stack MERN & AI Automation Specialist</title>
-        <meta
-          name="description"
-          content="Full Stack Engineer (MERN) specializing in high-performance web applications and AI Automation/Agent development."
-        />
+        <title>Ahsan Khan | AI-First Full Stack Engineer</title>
       </Helmet>
 
-      {/* BACKGROUND VIDEO */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      {/* ADVANCED BACKGROUND ARCHITECTURE */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Animated Radial Gradients */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-[radial-gradient(circle,rgba(16,185,129,0.07)_0%,transparent_70%)]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle,rgba(59,130,246,0.05)_0%,transparent_70%)]" />
+        
+        {/* Subtle Grid with Fade */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 invert"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      </div>
 
-      {/* DARK LAYER */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm z-10"></div>
-
-      {/* FLOATING LIGHTS */}
-      <motion.div
-        animate={{ x: [0, 40, 0], y: [0, -20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-16 left-10 w-44 h-44 bg-purple-500/30 blur-3xl rounded-full z-20"
-      />
-      <motion.div
-        animate={{ x: [0, -30, 0], y: [0, 25, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-20 right-10 w-52 h-52 bg-blue-600/30 blur-3xl rounded-full z-20"
-      />
-
-      {/* MAIN GRID */}
-      <div className="relative z-30 px-6 lg:px-20 pt-32 pb-24">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-        >
-
-          {/* LEFT TEXT */}
-          <div className="space-y-6">
-            <motion.span variants={itemVariants} className="text-xl tracking-widest text-gray-300">
-              FULL STACK MERN & AI AUTOMATION EXPERT.
-            </motion.span>
-
-            <motion.h1
-              variants={itemVariants}
-              className="text-5xl lg:text-7xl font-extrabold leading-tight"
-            >
-              Building the Future with
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                {" "}
-                MERN and AI Agents
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          
+          {/* LEFT SIDE: TYPOGRAPHY */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-10"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-2xl shadow-inner">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
               </span>
-            </motion.h1>
+              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500/80">Available for Scalable Solutions</span>
+            </div>
 
-            <motion.p variants={itemVariants} className="text-gray-300 text-xl max-w-xl">
-              I'm <span className="text-white font-semibold">Ahsan Khan</span>, a Full Stack MERN
-              Engineer creating high-performance web apps and AI Agents for full business automation.
-            </motion.p>
+            <h1 className="text-7xl lg:text-9xl font-bold tracking-tighter leading-none">
+              AI <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-emerald-300 via-emerald-500 to-blue-600">
+                ARCHITECT
+              </span>
+            </h1>
 
-            {/* BUTTON */}
-            <motion.div variants={itemVariants} className="pt-4">
+            <p className="max-w-md text-lg text-slate-400 font-light leading-relaxed">
+              I’m <span className="text-white font-medium">Ahsan Khan</span>. Crafting high-performance <span className="text-emerald-400">MERN</span> ecosystems and autonomous <span className="text-blue-400">AI Agents</span> that operate at the speed of thought.
+            </p>
+
+            {/* ACTION BUTTONS */}
+            <div className="flex flex-wrap gap-6 items-center">
               <motion.button
-                onClick={goToProjects}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(16,185,129,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 bg-gradient-to-r from-purple-600 to-blue-500 px-8 py-4 
-                rounded-full shadow-xl text-white font-bold text-lg hover:-translate-y-1 transition-all"
+                onClick={() => navigate("/projects")}
+                className="bg-[#10b981] text-black font-black px-10 py-5 rounded-full text-lg transition-all"
               >
-                Explore Projects & Case Studies
-                <motion.svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  viewBox="0 0 24 24"
-                  animate={{ y: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </motion.svg>
+                VIEW SYSTEMS
               </motion.button>
-            </motion.div>
-          </div>
-
-          {/* RIGHT — PROFILE CARD */}
-          <motion.div variants={itemVariants} className="flex justify-center lg:justify-end">
-            <motion.div
-              animate={{ y: [0, -15, 0], rotate: [0, 1, -1, 0] }}
-              transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-              className="relative p-4"
-            >
-              {/* Glow Ring */}
-              <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-purple-500/40 to-blue-500/40 blur-3xl opacity-70"></div>
-
-              {/* Card */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4, type: "spring" }}
-                className="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-[40px] overflow-hidden 
-                bg-white/5 border border-white/20 backdrop-blur-xl shadow-2xl relative"
-              >
-                <img src="/ahsan-profile.png" alt="Ahsan Khan" className="w-full h-full object-contain" />
-              </motion.div>
-            </motion.div>
+              
+              <div className="flex -space-x-3">
+                {[SiOpenai, SiLangchain, SiNodedotjs, SiReact, SiMongodb].map((Icon, i) => (
+                  <div key={i} className="h-12 w-12 rounded-full border border-[#111] bg-[#1a1a1a] flex items-center justify-center text-xl text-slate-300 shadow-xl hover:-translate-y-2 transition-transform cursor-pointer">
+                    <Icon />
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
-        </motion.div>
 
-        {/* FEATURE CARDS */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20"
+          {/* RIGHT SIDE: ADVANCED VISUAL */}
+          <motion.div 
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            className="relative flex justify-center perspective-1000"
+          >
+            <div className="relative w-[320px] h-[450px] md:w-[400px] md:h-[550px]">
+              {/* Outer Glass Layer */}
+              <div className="absolute inset-0 rounded-[3rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden group">
+                <img 
+                  src="/ahsan-profile.png" 
+                  alt="Ahsan" 
+                  className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
+                />
+                
+                {/* Holographic Sweep */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                {/* Internal Label */}
+                <div className="absolute bottom-10 left-0 w-full px-8 translate-z-50">
+                   <div className="p-4 rounded-2xl bg-black/60 border border-white/5 backdrop-blur-md">
+                      <div className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest mb-1">Expertise</div>
+                      <div className="text-sm font-medium">Neural Workflows & MERN</div>
+                   </div>
+                </div>
+              </div>
+
+              {/* Orbiting Elements */}
+              <FloatingElement icon="⚡" label="High Speed" top="-5%" right="-5%" delay={0} />
+              <FloatingElement icon="🤖" label="Autonomous" bottom="15%" left="-15%" delay={1.5} />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* MODERN FOOTER STRIP */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between gap-8 text-slate-500"
         >
-          {/* AI AUTOMATION CARD */}
-          <motion.div variants={itemVariants}>
-            <div className="rounded-3xl p-8 bg-black/10 border border-purple-400/50 backdrop-blur-xl 
-            hover:border-purple-300 hover:bg-black/20 transition-all h-full">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-                🤖 AI Agents & Automation
-              </h3>
-              <p className="text-gray-300 mt-4 text-lg leading-relaxed">
-                Building AI Agents for automation, workflows, scraping & intelligent processing.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* MERN CARD */}
-          <motion.div variants={itemVariants}>
-            <div className="rounded-3xl p-8 bg-black/10 border border-blue-400/50 backdrop-blur-xl 
-            hover:border-blue-300 hover:bg-black/20 transition-all h-full">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
-                🚀 MERN Stack Development
-              </h3>
-              <p className="text-gray-300 mt-4 text-lg leading-relaxed">
-                Creating high-performance, secure & scalable MERN applications.
-              </p>
-            </div>
-          </motion.div>
+          <div className="space-y-1">
+             <div className="text-white font-bold tracking-widest">CORE CAPABILITIES</div>
+             <div className="text-sm font-light">End-to-end Automation & Full Stack Logic</div>
+          </div>
+          <div className="flex gap-12 text-[11px] font-black tracking-[.25em] uppercase">
+             <div className="hover:text-emerald-400 transition-colors cursor-pointer">Scraping</div>
+             <div className="hover:text-emerald-400 transition-colors cursor-pointer">LLM Integration</div>
+             <div className="hover:text-emerald-400 transition-colors cursor-pointer">React Architect</div>
+          </div>
         </motion.div>
       </div>
     </div>
+  );
+}
+
+function FloatingElement({ icon, label, top, right, bottom, left, delay }) {
+  return (
+    <motion.div
+      animate={{ y: [0, -15, 0] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
+      style={{ top, right, bottom, left }}
+      className="absolute z-20 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl flex items-center gap-3"
+    >
+      <span className="text-lg">{icon}</span>
+      <span className="text-[10px] font-black uppercase tracking-widest text-white/70">{label}</span>
+    </motion.div>
   );
 }
