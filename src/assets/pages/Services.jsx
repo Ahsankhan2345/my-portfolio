@@ -175,17 +175,21 @@ export default function Services() {
                     </div>
 
                     {/* 4. CTA Section */}
-                    <div className="group relative p-16 rounded-[3rem] bg-[#111] border border-white/5 text-center overflow-hidden">
-                        <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
-                        <div className="relative z-10">
-                            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tighter uppercase">Ready to start?</h3>
-                            <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-light italic">"Let's architect the next great solution together."</p>
-                            <button className="relative px-12 py-5 bg-emerald-500 text-black font-black text-xs tracking-[0.3em] rounded-full uppercase hover:bg-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95">
-                                Request a Consultation
-                            </button>
-                        </div>
-                    </div>
-
+                    {/* 4. CTA Section */}
+<div className="group relative p-16 rounded-[3rem] bg-[#111] border border-white/5 text-center overflow-hidden">
+    <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
+    <div className="relative z-10">
+        <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tighter uppercase">Ready to start?</h3>
+        <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-light italic">"Let's architect the next great solution together."</p>
+        
+        {/* Yahan Link component add kiya gaya hai */}
+        <Link to="/contact">
+            <button className="relative px-12 py-5 bg-emerald-500 text-black font-black text-xs tracking-[0.3em] rounded-full uppercase hover:bg-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95">
+                Request a Consultation
+            </button>
+        </Link>
+    </div>
+</div>
                 </div>
             </div>
         </>
